@@ -326,10 +326,9 @@ export default function GeoModiLandingReplica() {
                     <video
                       src="/videos/Group11Video.mp4"
                       autoPlay
-                      loop
                       muted
                       playsInline
-                      className="w-full h-auto"
+                      className="w-full h-full object-cover object-center scale-[1.2]"
                     />
                   </motion.div>
                   <motion.div
@@ -340,10 +339,9 @@ export default function GeoModiLandingReplica() {
                     <video
                       src="/videos/Group13Video.mp4"
                       autoPlay
-                      loop
                       muted
                       playsInline
-                      className="w-full h-auto"
+                      className="w-full h-full object-cover object-center scale-[1.2]"
                     />
                   </motion.div>
                 </motion.div>
@@ -364,10 +362,9 @@ export default function GeoModiLandingReplica() {
                     <video
                       src="/videos/Group12Video.mp4"
                       autoPlay
-                      loop
                       muted
                       playsInline
-                      className="w-full h-auto"
+                      className="w-full h-full object-cover object-center scale-[1.2]"
                     />
                   </motion.div>
                 </motion.div>
