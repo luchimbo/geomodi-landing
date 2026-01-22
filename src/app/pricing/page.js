@@ -87,9 +87,9 @@ export default function PricingPage() {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                                className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:scale-[1.02] backdrop-blur-xl border ${plan.highlight
-                                        ? "bg-white/40 border-white/50 ring-1 ring-[#1A0B5E]/10"
-                                        : "bg-white/20 border-white/40 hover:bg-white/30"
+                                className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:scale-[1.02] backdrop-blur-xl border border-white/40 ${plan.highlight
+                                    ? "bg-[#E6E6FA] ring-1 ring-[#1A0B5E]/10"
+                                    : "bg-[#E6E6FA]/40 hover:bg-[#E6E6FA]/60"
                                     }`}
                             >
                                 {/* Gloss Reflection */}
@@ -114,20 +114,20 @@ export default function PricingPage() {
                                         {plan.description}
                                     </p>
 
-                                    <div className="space-y-6 mb-10 flex-1">
-                                        <div className="p-4 rounded-2xl bg-white/40 backdrop-blur-md border border-white/50 shadow-inner">
-                                            <h4 className="text-xs font-bold uppercase tracking-wider mb-1 opacity-60">Créditos</h4>
-                                            <p className="text-[#3E3E70] font-medium">{plan.credits}</p>
+                                    <div className="space-y-8 mb-10 flex-1">
+                                        <div>
+                                            <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Créditos</h4>
+                                            <p className="text-[#1A0B5E] text-lg font-medium font-space">{plan.credits}</p>
                                         </div>
-                                        <div className="p-4 rounded-2xl bg-white/40 backdrop-blur-md border border-white/50 shadow-inner">
-                                            <h4 className="text-xs font-bold uppercase tracking-wider mb-1 opacity-60">Precio</h4>
-                                            <p className="text-2xl font-bold">{plan.price}</p>
+                                        <div>
+                                            <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Precio</h4>
+                                            <p className="text-3xl font-bold font-space">{plan.price}</p>
                                         </div>
-                                        <div className="p-4 rounded-2xl bg-white/40 backdrop-blur-md border border-white/50 shadow-inner">
-                                            <h4 className="text-xs font-bold uppercase tracking-wider mb-1 opacity-60">Incluye</h4>
-                                            <p className="text-[#3E3E70] font-medium">{plan.includes}</p>
+                                        <div>
+                                            <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Incluye</h4>
+                                            <p className="text-[#1A0B5E] text-lg font-medium font-space">{plan.includes}</p>
                                             {plan.note && (
-                                                <p className="text-[10px] text-[#3E3E70]/70 mt-1 italic leading-tight">{plan.note}</p>
+                                                <p className="text-xs text-[#1A0B5E]/70 mt-1 italic leading-tight font-space">{plan.note}</p>
                                             )}
                                         </div>
                                     </div>
