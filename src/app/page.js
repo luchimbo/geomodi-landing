@@ -105,15 +105,22 @@ export default function GeoModiLandingReplica() {
                 </a>
               </div>
 
+              <div className="hidden md:flex flex-1 justify-center items-center gap-8">
+                <Link href="/pricing" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+                  Precio
+                </Link>
+              </div>
+
               <div className="flex flex-1 justify-end">
-                <motion.button
-                  whileHover={reduce ? {} : { y: -1, scale: 1.01 }}
-                  whileTap={reduce ? {} : { scale: 0.99 }}
-                  onClick={() => setIsModalOpen(true)}
-                  className="rounded-full bg-emerald-300 px-5 py-2 text-sm font-semibold text-black shadow-lg shadow-emerald-300/25 hover:bg-emerald-200 cursor-pointer"
-                >
-                  Comenzar ahora
-                </motion.button>
+                <Link href="/pricing">
+                  <motion.button
+                    whileHover={reduce ? {} : { y: -1, scale: 1.01 }}
+                    whileTap={reduce ? {} : { scale: 0.99 }}
+                    className="rounded-full bg-emerald-300 px-5 py-2 text-sm font-semibold text-black shadow-lg shadow-emerald-300/25 hover:bg-emerald-200 cursor-pointer"
+                  >
+                    Comenzar ahora
+                  </motion.button>
+                </Link>
               </div>
             </div>
           </motion.nav>
