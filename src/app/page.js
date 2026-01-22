@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Play } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 import Link from "next/link";
 
 export default function GeoModiLandingReplica() {
@@ -13,6 +13,30 @@ export default function GeoModiLandingReplica() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const ease = [0.22, 1, 0.36, 1];
+
+  const AnimatedVideo = ({ src, className }) => {
+    const videoRef = React.useRef(null);
+    const isInView = useInView(videoRef, { amount: 0.4 });
+
+    React.useEffect(() => {
+      if (isInView && videoRef.current) {
+        videoRef.current.play().catch(e => console.log("Video play interrupted"));
+      } else if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }, [isInView]);
+
+    return (
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        playsInline
+        className={className}
+      />
+    );
+  };
 
   const elegantFade = {
     hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
@@ -323,11 +347,8 @@ export default function GeoModiLandingReplica() {
                     whileHover={{ scale: 1.02 }}
                     className="w-full max-w-[440px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
                   >
-                    <video
+                    <AnimatedVideo
                       src="/videos/Group11Video.mp4"
-                      autoPlay
-                      muted
-                      playsInline
                       className="w-full h-full object-cover object-center scale-[1.2]"
                     />
                   </motion.div>
@@ -336,11 +357,8 @@ export default function GeoModiLandingReplica() {
                     whileHover={{ scale: 1.02 }}
                     className="w-full max-w-[500px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
                   >
-                    <video
+                    <AnimatedVideo
                       src="/videos/Group13Video.mp4"
-                      autoPlay
-                      muted
-                      playsInline
                       className="w-full h-full object-cover object-center scale-[1.2]"
                     />
                   </motion.div>
@@ -359,11 +377,8 @@ export default function GeoModiLandingReplica() {
                     whileHover={{ scale: 1.02 }}
                     className="w-full max-w-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
                   >
-                    <video
+                    <AnimatedVideo
                       src="/videos/Group12Video.mp4"
-                      autoPlay
-                      muted
-                      playsInline
                       className="w-full h-full object-cover object-center scale-[1.2]"
                     />
                   </motion.div>
