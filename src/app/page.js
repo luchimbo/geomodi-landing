@@ -390,13 +390,14 @@ export default function GeoModiLandingReplica() {
                     if (formEmailSource && !isLoading) {
                       setIsLoading(true);
                       try {
-                        const response = await fetch('/api/subscribe', {
+                        const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ email: formEmailSource }),
+                          body: JSON.stringify({ email: formEmailSource, timestamp: new Date().toISOString() }),
                         });
+                        const data = await response.json();
 
-                        if (response.ok) {
+                        if (data.result === 'success') {
                           setIsSubmitted(true);
                           e.target.reset();
                           setTimeout(() => {
@@ -515,13 +516,14 @@ export default function GeoModiLandingReplica() {
                       if (email && !isLoading) {
                         setIsLoading(true);
                         try {
-                          const response = await fetch('/api/subscribe', {
+                          const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ email }),
+                            body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
                           });
+                          const data = await response.json();
 
-                          if (response.ok) {
+                          if (data.result === 'success') {
                             setIsSubmitted(true);
                             setTimeout(() => {
                               setIsModalOpen(false);
