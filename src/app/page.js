@@ -2,6 +2,7 @@
 import React from "react";
 import { Play } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 
 export default function GeoModiLandingReplica() {
   const reduce = useReducedMotion();
@@ -214,7 +215,7 @@ export default function GeoModiLandingReplica() {
           </section>
 
           {/* Section 3: Soluciones (Images) */}
-          <section className="min-h-screen flex items-center justify-center py-20 px-4 relative overflow-hidden bg-black" id="soluciones">
+          <section className="py-24 md:py-32 px-4 relative overflow-hidden bg-black" id="soluciones">
             {/* Neural Network Background Animation */}
             <div className="absolute inset-0 pointer-events-none z-0">
               <svg className="w-full h-full opacity-60" viewBox="0 0 1000 1000">
@@ -308,14 +309,14 @@ export default function GeoModiLandingReplica() {
                 <span className="text-emerald-300">Optimiza</span> <span className="text-white">la forma en que la IA ve tu marca</span>
               </motion.h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-x-16">
                 {/* Left Column - Aligned Right */}
                 <motion.div
-                  className="flex flex-col items-center md:items-end gap-16"
+                  className="flex flex-col items-center md:items-end gap-16 md:gap-24"
                   variants={stagger}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: false, amount: 0.2 }}
+                  viewport={{ once: false, amount: 0.1 }}
                 >
                   <motion.div
                     variants={cardIn}
@@ -343,11 +344,11 @@ export default function GeoModiLandingReplica() {
 
                 {/* Right Column - Aligned Left */}
                 <motion.div
-                  className="flex flex-col items-center md:items-start pt-0 md:pt-32"
+                  className="flex flex-col items-center md:items-start pt-0 md:pt-48"
                   variants={stagger}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: false, amount: 0.2 }}
+                  viewport={{ once: false, amount: 0.1 }}
                 >
                   <motion.div
                     variants={cardIn}
@@ -458,8 +459,15 @@ export default function GeoModiLandingReplica() {
         </main>
 
         <footer className="border-t border-white/5 bg-black/60 backdrop-blur-md">
-          <div className="mx-auto max-w-6xl px-4 py-8 text-center text-sm text-white/30">
-            © {new Date().getFullYear()} GeoModi • Inteligencia Generativa para Marcas
+          <div className="mx-auto max-w-6xl px-4 py-12 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-white/30">
+            <div>
+              © {new Date().getFullYear()} GeoModi • Inteligencia Generativa para Marcas
+            </div>
+            <div className="flex gap-8">
+              <Link href="/terminos" className="hover:text-emerald-300 transition-colors">
+                Términos y Condiciones
+              </Link>
+            </div>
           </div>
         </footer>
 
@@ -493,11 +501,11 @@ export default function GeoModiLandingReplica() {
               {!isSubmitted ? (
                 <>
                   <div className="mb-8">
-                    <h3 className="text-3xl font-bold text-white font-space mb-2">
-                      Mantente informado
+                    <h3 className="text-2xl font-bold text-white font-space mb-4 leading-tight">
+                      ¿Estás listo para llevar tu marca al siguiente nivel?
                     </h3>
-                    <p className="text-white/60 text-lg">
-                      Sé el primero en participar del futuro.
+                    <p className="text-white/70 text-lg leading-relaxed">
+                      Trabajá directamente con nuestro equipo experto para crear tu estrategia de contenidos.
                     </p>
                   </div>
 
@@ -539,7 +547,7 @@ export default function GeoModiLandingReplica() {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="tu@email.com"
+                        placeholder="Ingresá tu email"
                         required
                         className="w-full rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-white placeholder-white/40 focus:border-emerald-300/50 focus:outline-none focus:ring-2 focus:ring-emerald-300/20 transition-all text-lg"
                       />
@@ -552,7 +560,7 @@ export default function GeoModiLandingReplica() {
                       whileTap={isLoading ? {} : { scale: 0.98 }}
                       className="w-full rounded-2xl bg-emerald-300 px-6 py-4 font-bold text-black shadow-lg shadow-emerald-300/25 hover:bg-emerald-200 transition-colors disabled:opacity-50 flex items-center justify-center gap-3 text-lg"
                     >
-                      {isLoading ? 'Enviando...' : 'Suscribirme'}
+                      {isLoading ? 'Enviando...' : 'Comenzar ahora'}
                     </motion.button>
                   </form>
                 </>
