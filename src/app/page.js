@@ -350,7 +350,7 @@ export default function GeoModiLandingReplica() {
                   >
                     <AnimatedVideo
                       src="/videos/Group11Video.mp4"
-                      className="w-full h-full object-cover object-center scale-[1.4]"
+                      className="w-full h-full object-contain object-center"
                     />
                   </motion.div>
                   <motion.div
@@ -361,7 +361,7 @@ export default function GeoModiLandingReplica() {
                   >
                     <AnimatedVideo
                       src="/videos/Group13Video.mp4"
-                      className="w-full h-full object-cover object-center scale-[1.4]"
+                      className="w-full h-full object-contain object-center"
                     />
                   </motion.div>
                 </motion.div>
@@ -382,7 +382,7 @@ export default function GeoModiLandingReplica() {
                   >
                     <AnimatedVideo
                       src="/videos/Group12Video.mp4"
-                      className="w-full h-full object-cover object-center scale-[1.4]"
+                      className="w-full h-full object-contain object-center"
                     />
                   </motion.div>
                 </motion.div>
