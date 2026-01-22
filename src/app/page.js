@@ -345,21 +345,23 @@ export default function GeoModiLandingReplica() {
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[440px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
+                    className="w-full max-w-[486px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
+                    style={{ aspectRatio: "972 / 966" }}
                   >
                     <AnimatedVideo
                       src="/videos/Group11Video.mp4"
-                      className="w-full h-full object-cover object-center scale-[1.2]"
+                      className="w-full h-full object-cover object-center scale-[1.4]"
                     />
                   </motion.div>
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[500px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
+                    className="w-full max-w-[522px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
+                    style={{ aspectRatio: "1044 / 774" }}
                   >
                     <AnimatedVideo
                       src="/videos/Group13Video.mp4"
-                      className="w-full h-full object-cover object-center scale-[1.2]"
+                      className="w-full h-full object-cover object-center scale-[1.4]"
                     />
                   </motion.div>
                 </motion.div>
@@ -375,11 +377,12 @@ export default function GeoModiLandingReplica() {
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
+                    className="w-full max-w-[524px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
+                    style={{ aspectRatio: "1048 / 804" }}
                   >
                     <AnimatedVideo
                       src="/videos/Group12Video.mp4"
-                      className="w-full h-full object-cover object-center scale-[1.2]"
+                      className="w-full h-full object-cover object-center scale-[1.4]"
                     />
                   </motion.div>
                 </motion.div>
