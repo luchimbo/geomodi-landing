@@ -110,16 +110,16 @@ export default function PricingPage() {
                                         <h2 className="text-4xl font-bold font-space mt-1">{plan.name}</h2>
                                     </div>
 
-                                    <p className="text-lg text-[#3E3E70] mb-8 leading-relaxed">
+                                    <p className="text-lg text-[#3E3E70] mb-8 leading-relaxed min-h-[56px]">
                                         {plan.description}
                                     </p>
 
                                     <div className="space-y-8 mb-10 flex-1">
-                                        <div>
+                                        <div className="min-h-[3.5rem]">
                                             <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Créditos</h4>
                                             <p className="text-[#1A0B5E] text-lg font-medium font-space">{plan.credits}</p>
                                         </div>
-                                        <div>
+                                        <div className="min-h-[5rem]">
                                             <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Incluye</h4>
                                             <p className="text-[#1A0B5E] text-lg font-medium font-space">{plan.includes}</p>
                                             {plan.note && (
