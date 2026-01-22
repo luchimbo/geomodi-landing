@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Play } from "lucide-react";
-import { motion, useReducedMotion, useInView } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
 export default function GeoModiLandingReplica() {
@@ -14,29 +14,6 @@ export default function GeoModiLandingReplica() {
 
   const ease = [0.22, 1, 0.36, 1];
 
-  const AnimatedVideo = ({ src, className }) => {
-    const videoRef = React.useRef(null);
-    const isInView = useInView(videoRef, { amount: 0.4 });
-
-    React.useEffect(() => {
-      if (isInView && videoRef.current) {
-        videoRef.current.play().catch(e => console.log("Video play interrupted"));
-      } else if (videoRef.current) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-      }
-    }, [isInView]);
-
-    return (
-      <video
-        ref={videoRef}
-        src={src}
-        muted
-        playsInline
-        className={className}
-      />
-    );
-  };
 
   const elegantFade = {
     hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
@@ -345,23 +322,23 @@ export default function GeoModiLandingReplica() {
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[486px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
-                    style={{ aspectRatio: "972 / 966" }}
+                    className="w-full max-w-[440px]"
                   >
-                    <AnimatedVideo
-                      src="/videos/Group11Video.mp4"
-                      className="w-full h-full object-contain object-center"
+                    <img
+                      src="/group11.png"
+                      alt="Solución GEOModi 1"
+                      className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
                     />
                   </motion.div>
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[522px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
-                    style={{ aspectRatio: "1044 / 774" }}
+                    className="w-full max-w-[500px]"
                   >
-                    <AnimatedVideo
-                      src="/videos/Group13Video.mp4"
-                      className="w-full h-full object-contain object-center"
+                    <img
+                      src="/group13.png"
+                      alt="Solución GEOModi 3"
+                      className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
                     />
                   </motion.div>
                 </motion.div>
@@ -377,12 +354,12 @@ export default function GeoModiLandingReplica() {
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[524px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
-                    style={{ aspectRatio: "1048 / 804" }}
+                    className="w-full max-w-[400px]"
                   >
-                    <AnimatedVideo
-                      src="/videos/Group12Video.mp4"
-                      className="w-full h-full object-contain object-center"
+                    <img
+                      src="/group12.png"
+                      alt="Solución GEOModi 2"
+                      className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
                     />
                   </motion.div>
                 </motion.div>
