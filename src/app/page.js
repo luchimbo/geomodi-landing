@@ -321,23 +321,29 @@ export default function GeoModiLandingReplica() {
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[440px]"
+                    className="w-full max-w-[440px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
                   >
-                    <img
-                      src="/group11.png"
-                      alt="Solución GEOModi 1"
-                      className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                    <video
+                      src="/videos/Group11Video.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto"
                     />
                   </motion.div>
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[500px]"
+                    className="w-full max-w-[500px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
                   >
-                    <img
-                      src="/group13.png"
-                      alt="Solución GEOModi 3"
-                      className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                    <video
+                      src="/videos/Group13Video.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto"
                     />
                   </motion.div>
                 </motion.div>
@@ -353,12 +359,15 @@ export default function GeoModiLandingReplica() {
                   <motion.div
                     variants={cardIn}
                     whileHover={{ scale: 1.02 }}
-                    className="w-full max-w-[400px]"
+                    className="w-full max-w-[400px] overflow-hidden rounded-[2rem] shadow-2xl bg-white/5"
                   >
-                    <img
-                      src="/group12.png"
-                      alt="Solución GEOModi 2"
-                      className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
+                    <video
+                      src="/videos/Group12Video.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto"
                     />
                   </motion.div>
                 </motion.div>
