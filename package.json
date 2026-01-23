@@ -12,6 +12,7 @@
     "framer-motion": "^12.27.1",
     "lucide-react": "^0.562.0",
     "next": "16.1.3",
+    "posthog-js": "^1.335.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
@@ -20,5 +21,18 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.3",
     "tailwindcss": "^4"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luchimbo/geomodi-landing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luchimbo/geomodi-landing/issues"
+  },
+  "homepage": "https://github.com/luchimbo/geomodi-landing#readme"
 }
