@@ -106,8 +106,11 @@ export default function GeoModiLandingReplica() {
               </div>
 
               <div className="hidden md:flex flex-1 justify-center items-center gap-8">
+                <a href="#soluciones" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+                  Soluciones
+                </a>
                 <Link href="/pricing" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
-                  Precio
+                  Planes
                 </Link>
               </div>
 
@@ -223,7 +226,7 @@ export default function GeoModiLandingReplica() {
           </section>
 
           {/* Section 3: Soluciones (Images) */}
-          <section className="py-24 md:py-32 px-4 relative overflow-hidden bg-black" id="soluciones">
+          <section className="py-24 md:py-32 px-4 relative overflow-hidden bg-black">
             {/* Neural Network Background Animation */}
             <div className="absolute inset-0 pointer-events-none z-0">
               <svg className="w-full h-full opacity-60" viewBox="0 0 1000 1000">
@@ -375,7 +378,7 @@ export default function GeoModiLandingReplica() {
           </section>
 
           {/* New Section: What is GEOMODI */}
-          <section className="py-24 px-4 bg-black relative">
+          <section className="py-24 px-4 bg-black relative" id="soluciones">
             <div className="max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}

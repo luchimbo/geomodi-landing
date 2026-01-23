@@ -80,16 +80,16 @@ export default function PricingPage() {
                         Planes que se adaptan al tamaño de tu tienda y a cada etapa de crecimiento.
                     </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 max-w-4xl mx-auto items-end">
                         {plans.map((plan, index) => (
                             <motion.div
                                 key={plan.name}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                                className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:scale-[1.02] backdrop-blur-xl border border-white/40 ${plan.highlight
-                                    ? "bg-[#E6E6FA] ring-1 ring-[#1A0B5E]/10"
-                                    : "bg-[#E6E6FA]/40 hover:bg-[#E6E6FA]/60"
+                                className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:translate-y-[-8px] backdrop-blur-xl border border-white/40 ${plan.highlight
+                                    ? "bg-[#E6E6FA] ring-1 ring-[#1A0B5E]/10 z-20 shadow-violet-200/50"
+                                    : "bg-[#E6E6FA]/40 hover:bg-[#E6E6FA]/60 z-10"
                                     }`}
                             >
                                 {/* Gloss Reflection */}
@@ -99,42 +99,48 @@ export default function PricingPage() {
                                 <div className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine" />
 
                                 {plan.tag && (
-                                    <div className="bg-[#1A0B5E] text-white py-3 text-xs font-bold tracking-[0.2em] uppercase relative z-10">
+                                    <div className="bg-[#1A0B5E] text-white py-3 text-xs font-bold tracking-[0.2em] uppercase relative z-10 w-full text-center">
                                         {plan.tag}
                                     </div>
                                 )}
 
-                                <div className="p-10 md:p-12 flex flex-col flex-1 text-left relative z-10">
-                                    <div className="mb-8">
-                                        <span className="text-sm font-medium uppercase tracking-wider opacity-60">Plan</span>
-                                        <h2 className="text-4xl font-bold font-space mt-1">{plan.name}</h2>
+                                <div className="p-10 md:p-12 flex flex-col flex-1 text-left relative z-10 min-h-[600px]">
+                                    <div className="mb-0">
+                                        <div className="mb-8 min-h-[90px]">
+                                            <span className="text-sm font-medium uppercase tracking-wider opacity-60">Plan</span>
+                                            <h2 className="text-4xl font-bold font-space mt-1">{plan.name}</h2>
+                                        </div>
+
+                                        <div className="min-h-[80px] mb-8">
+                                            <p className="text-lg text-[#3E3E70] leading-relaxed">
+                                                {plan.description}
+                                            </p>
+                                        </div>
                                     </div>
 
-                                    <p className="text-lg text-[#3E3E70] mb-8 leading-relaxed min-h-[56px]">
-                                        {plan.description}
-                                    </p>
-
-                                    <div className="space-y-8 mb-10 flex-1">
-                                        <div className="min-h-[3.5rem]">
+                                    <div className="space-y-10 mb-10 flex-1">
+                                        <div className="min-h-[60px]">
                                             <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Créditos</h4>
                                             <p className="text-[#1A0B5E] text-lg font-medium font-space">{plan.credits}</p>
                                         </div>
-                                        <div className="min-h-[5rem]">
+                                        <div className="min-h-[100px]">
                                             <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Incluye</h4>
-                                            <p className="text-[#1A0B5E] text-lg font-medium font-space">{plan.includes}</p>
-                                            {plan.note && (
+                                            <p className="text-[#1A0B5E] text-lg font-medium font-space leading-tight">{plan.includes}</p>
+                                            {plan.note ? (
                                                 <p className="text-xs text-[#1A0B5E]/70 mt-1 italic leading-tight font-space">{plan.note}</p>
+                                            ) : (
+                                                <div className="h-[16px]" />
                                             )}
                                         </div>
                                         <div>
                                             <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Precio</h4>
-                                            <p className="text-3xl font-bold font-space">{plan.price}</p>
+                                            <p className="text-3xl font-bold font-space leading-none">{plan.price}</p>
                                         </div>
                                     </div>
 
                                     <button
-                                        className={`w-full py-5 rounded-3xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 ${plan.highlight
-                                            ? "bg-[#1A0B5E] text-white hover:bg-[#2A1B7E] shadow-[#1A0B5E]/30"
+                                        className={`w-full py-5 rounded-3xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 mt-auto ${plan.highlight
+                                            ? "bg-[#1A0B5E] text-white hover:bg-[#2A1B7E] shadow-[#1A0B5E]/30 border-2 border-transparent"
                                             : "bg-[#1A0B5E]/5 border-2 border-[#1A0B5E] text-[#1A0B5E] hover:bg-[#1A0B5E]/10"
                                             }`}
                                     >
