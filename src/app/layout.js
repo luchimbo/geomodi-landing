@@ -1,5 +1,10 @@
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { PHProvider } from "./providers";
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+
+import PostHogPageView from './PostHogPageView'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +32,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <PHProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
+        >
+          <Suspense fallback={null}>
+            <PostHogPageView />
+          </Suspense>
+          {children}
+        </body>
+      </PHProvider>
     </html>
   );
 }
+
