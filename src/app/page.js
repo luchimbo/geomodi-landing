@@ -57,6 +57,23 @@ export default function GeoModiLandingReplica() {
         </div>
 
         <div className="relative z-10">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "GeoModi",
+                "url": "https://geomodi.com",
+                "logo": "https://geomodi.com/logo_high_res.png",
+                "description": "Líderes en Generative Engine Optimization (GEO). Optimizamos tu TiendaNube para ChatGPT y buscadores de IA.",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressCountry": "AR"
+                }
+              })
+            }}
+          />
           <Navbar
             isMenuOpen={isMenuOpen}
             setIsMenuOpen={setIsMenuOpen}

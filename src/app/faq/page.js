@@ -152,12 +152,33 @@ export default function FAQPage() {
                     <div className="absolute bottom-[-10%] left-[-10%] h-[400px] w-[400px] md:h-[600px] md:w-[600px] rounded-full bg-violet-700/15 blur-[80px] md:blur-[150px]" />
                 </div>
 
-                <Navbar
-                    isMenuOpen={isMenuOpen}
-                    setIsMenuOpen={setIsMenuOpen}
-                    reduce={reduce}
-                    theme="dark"
-                />
+                <div className="relative z-10">
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                "@context": "https://schema.org",
+                                "@type": "FAQPage",
+                                "mainEntity": faqData.flatMap(section =>
+                                    section.questions.map(q => ({
+                                        "@type": "Question",
+                                        "name": q.q,
+                                        "acceptedAnswer": {
+                                            "@type": "Answer",
+                                            "text": q.a
+                                        }
+                                    }))
+                                )
+                            })
+                        }}
+                    />
+                    <Navbar
+                        isMenuOpen={isMenuOpen}
+                        setIsMenuOpen={setIsMenuOpen}
+                        reduce={reduce}
+                        theme="dark"
+                    />
+                </div>
 
                 <main className="relative z-10 pt-32 pb-24 px-4">
                     <div className="max-w-4xl mx-auto">

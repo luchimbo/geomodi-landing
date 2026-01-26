@@ -57,10 +57,10 @@ export const metadata = {
     icon: "/icon.png",
     apple: "/icon.png",
   },
-  robots: {
-    index: true,
-    follow: true,
+  verification: {
+    google: 'tu-codigo-de-verificacion-aqui', // Debes reemplazar por el código que te da GSC
   },
+  category: 'technology',
 };
 
 export default function RootLayout({ children }) {
