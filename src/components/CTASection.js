@@ -13,24 +13,21 @@ export default function CTASection() {
         if (formEmailSource && !isLoading) {
             setIsLoading(true);
             try {
-                const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
+                // Optimized for Client-Side Google Apps Script (Avoids CORS preflight)
+                await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain' },
                     body: JSON.stringify({ email: formEmailSource, timestamp: new Date().toISOString() }),
                 });
-                const data = await response.json();
 
-                if (data.result === 'success') {
-                    setIsSubmitted(true);
-                    e.target.reset();
-                    setTimeout(() => {
-                        setIsSubmitted(false);
-                        setIsLoading(false);
-                    }, 3000);
-                } else {
-                    alert('Hubo un error. Por favor intenta de nuevo.');
+                // Since 'no-cors' doesn't allow reading the response, we assume success if no exception is thrown
+                setIsSubmitted(true);
+                e.target.reset();
+                setTimeout(() => {
+                    setIsSubmitted(false);
                     setIsLoading(false);
-                }
+                }, 3000);
             } catch (error) {
                 console.error('Error:', error);
                 alert('Hubo un error. Por favor intenta de nuevo.');

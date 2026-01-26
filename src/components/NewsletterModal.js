@@ -14,25 +14,22 @@ export default function NewsletterModal({ isModalOpen, setIsModalOpen }) {
         if (email && !isLoading) {
             setIsLoading(true);
             try {
-                const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
+                // Optimized for Client-Side Google Apps Script (Avoids CORS preflight)
+                await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain' },
                     body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
                 });
-                const data = await response.json();
 
-                if (data.result === 'success') {
-                    setIsSubmitted(true);
-                    setTimeout(() => {
-                        setIsModalOpen(false);
-                        setIsSubmitted(false);
-                        setEmail("");
-                        setIsLoading(false);
-                    }, 2500);
-                } else {
-                    alert('Hubo un error. Por favor intenta de nuevo.');
+                // Since 'no-cors' doesn't allow reading the response, we assuming success
+                setIsSubmitted(true);
+                setTimeout(() => {
+                    setIsModalOpen(false);
+                    setIsSubmitted(false);
+                    setEmail("");
                     setIsLoading(false);
-                }
+                }, 2500);
             } catch (error) {
                 console.error('Error:', error);
                 alert('Hubo un error. Por favor intenta de nuevo.');
