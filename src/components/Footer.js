@@ -8,6 +8,9 @@ export default function Footer() {
                     © {new Date().getFullYear()} GeoModi • Inteligencia Generativa para Marcas
                 </div>
                 <div className="flex gap-8">
+                    <Link href="/faq" className="hover:text-emerald-300 transition-colors">
+                        FAQ
+                    </Link>
                     <Link href="/terminos" className="hover:text-emerald-300 transition-colors">
                         Términos y Condiciones
                     </Link>

@@ -35,6 +35,9 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dar
                         <Link href="/pricing" className={`text-sm font-medium ${textColor} ${hoverColor} transition-colors`}>
                             Planes
                         </Link>
+                        <Link href="/faq" className={`text-sm font-medium ${textColor} ${hoverColor} transition-colors`}>
+                            FAQ
+                        </Link>
                     </div>
 
                     <div className="flex items-center gap-3 md:flex-1 md:justify-end">
@@ -81,6 +84,13 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dar
                                     className="text-lg font-medium text-white/70 hover:text-white transition-colors"
                                 >
                                     Planes
+                                </Link>
+                                <Link
+                                    href="/faq"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-lg font-medium text-white/70 hover:text-white transition-colors"
+                                >
+                                    FAQ
                                 </Link>
                                 <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>
                                     <button className="w-full rounded-2xl bg-emerald-300 py-4 font-bold text-black shadow-lg">
