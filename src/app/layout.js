@@ -57,9 +57,6 @@ export const metadata = {
     icon: "/icon.png",
     apple: "/icon.png",
   },
-  verification: {
-    google: 'tu-codigo-de-verificacion-aqui', // Debes reemplazar por el código que te da GSC
-  },
   category: 'technology',
 };
 
