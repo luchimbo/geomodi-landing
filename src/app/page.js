@@ -50,9 +50,9 @@ export default function GeoModiLandingReplica() {
       <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
         {/* Background glow - Static for performance */}
         <div className="pointer-events-none fixed inset-0 z-0">
-          <div className="absolute -top-48 left-1/2 h-[520px] w-[980px] -translate-x-1/2 rounded-full bg-violet-700/35 blur-[120px]" />
-          <div className="absolute top-24 right-[-260px] h-[560px] w-[560px] rounded-full bg-emerald-500/20 blur-[120px]" />
-          <div className="absolute bottom-[-220px] left-[-260px] h-[560px] w-[560px] rounded-full bg-violet-700/25 blur-[140px]" />
+          <div className="absolute -top-24 md:-top-48 left-1/2 h-[300px] w-[500px] md:h-[520px] md:w-[980px] -translate-x-1/2 rounded-full bg-violet-700/30 blur-[60px] md:blur-[120px]" />
+          <div className="absolute top-12 md:top-24 right-[-130px] md:right-[-260px] h-[300px] w-[300px] md:h-[560px] md:w-[560px] rounded-full bg-emerald-500/15 blur-[60px] md:blur-[120px]" />
+          <div className="absolute bottom-[-110px] md:bottom-[-220px] left-[-130px] md:left-[-260px] h-[300px] w-[300px] md:h-[560px] md:w-[560px] rounded-full bg-violet-700/20 blur-[70px] md:blur-[140px]" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black" />
         </div>
 

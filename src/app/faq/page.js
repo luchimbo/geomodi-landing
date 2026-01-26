@@ -146,10 +146,10 @@ export default function FAQPage() {
     return (
         <LazyMotion features={domMax}>
             <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
-                {/* Background glow */}
+                {/* Background glow - Optimized for performance */}
                 <div className="pointer-events-none fixed inset-0 z-0">
-                    <div className="absolute top-0 right-[-10%] h-[600px] w-[600px] rounded-full bg-emerald-500/10 blur-[150px]" />
-                    <div className="absolute bottom-[-10%] left-[-10%] h-[600px] w-[600px] rounded-full bg-violet-700/15 blur-[150px]" />
+                    <div className="absolute top-0 right-[-10%] h-[400px] w-[400px] md:h-[600px] md:w-[600px] rounded-full bg-emerald-500/10 blur-[80px] md:blur-[150px]" />
+                    <div className="absolute bottom-[-10%] left-[-10%] h-[400px] w-[400px] md:h-[600px] md:w-[600px] rounded-full bg-violet-700/15 blur-[80px] md:blur-[150px]" />
                 </div>
 
                 <Navbar
@@ -223,7 +223,7 @@ export default function FAQPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                onClick={() => window.location.href = 'mailto:hola@geomodi.com'}
+                                onClick={() => window.location.href = 'mailto:geomodi3@gmail.com'}
                                 className="bg-emerald-300 text-black px-10 py-4 rounded-2xl font-bold text-lg hover:bg-emerald-200 transition-colors shadow-lg shadow-emerald-400/20"
                             >
                                 Contactar a soporte

@@ -15,9 +15,11 @@ export default function SolutionsSection({ stagger, cardIn }) {
                         </filter>
                     </defs>
 
-                    {/* Neural Network Nodes and Connections */}
+                    {/* Neural Network Nodes and Connections - Optimized for mobile */}
                     {(() => {
-                        const nodes = [
+                        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+                        const allNodes = [
                             { x: 100, y: 200 }, { x: 300, y: 150 }, { x: 500, y: 300 },
                             { x: 200, y: 450 }, { x: 400, y: 600 }, { x: 700, y: 200 },
                             { x: 850, y: 400 }, { x: 600, y: 550 }, { x: 900, y: 700 },
@@ -26,12 +28,16 @@ export default function SolutionsSection({ stagger, cardIn }) {
                             { x: 650, y: 550 }, { x: 800, y: 300 }, { x: 100, y: 900 }
                         ];
 
-                        const connections = [
+                        const allConnections = [
                             [0, 1], [1, 2], [2, 5], [5, 13], [13, 16], [16, 6], [6, 8],
                             [8, 11], [11, 10], [10, 9], [9, 17], [17, 3], [3, 12], [12, 0],
                             [1, 14], [14, 2], [14, 3], [3, 15], [15, 4], [4, 7], [7, 8],
                             [15, 11], [15, 6], [2, 6], [4, 10]
                         ];
+
+                        // Reduce complexity on mobile
+                        const nodes = isMobile ? allNodes.slice(0, 8) : allNodes;
+                        const connections = isMobile ? allConnections.slice(0, 10) : allConnections;
 
                         return (
                             <>
@@ -39,24 +45,24 @@ export default function SolutionsSection({ stagger, cardIn }) {
                                 {connections.map(([start, end], i) => (
                                     <motion.line
                                         key={`conn-${i}`}
-                                        x1={nodes[start].x}
-                                        y1={nodes[start].y}
-                                        x2={nodes[end].x}
-                                        y2={nodes[end].y}
+                                        x1={nodes[start]?.x || 0}
+                                        y1={nodes[start]?.y || 0}
+                                        x2={nodes[end]?.x || 0}
+                                        y2={nodes[end]?.y || 0}
                                         stroke="#87FDB4"
-                                        strokeWidth="1.5"
+                                        strokeWidth={isMobile ? "1" : "1.5"}
                                         initial={{ pathLength: 0, opacity: 0 }}
                                         animate={{
                                             pathLength: [0, 1, 1, 0],
-                                            opacity: [0, 0.4, 0.4, 0]
+                                            opacity: [0, 0.3, 0.3, 0]
                                         }}
                                         transition={{
-                                            duration: 5,
+                                            duration: isMobile ? 7 : 5,
                                             repeat: Infinity,
-                                            delay: i * 0.2,
+                                            delay: i * 0.3,
                                             ease: "easeInOut",
                                         }}
-                                        filter="url(#neonGlow)"
+                                        filter={isMobile ? "none" : "url(#neonGlow)"}
                                     />
                                 ))}
                                 {/* Nodes */}
@@ -65,20 +71,20 @@ export default function SolutionsSection({ stagger, cardIn }) {
                                         key={`node-${i}`}
                                         cx={node.x}
                                         cy={node.y}
-                                        r="4"
+                                        r={isMobile ? "3" : "4"}
                                         fill="#87FDB4"
                                         initial={{ opacity: 0, scale: 0 }}
                                         animate={{
-                                            opacity: [0, 1, 0],
-                                            scale: [0.5, 1.2, 0.5]
+                                            opacity: [0, 0.8, 0],
+                                            scale: [0.5, 1.1, 0.5]
                                         }}
                                         transition={{
-                                            duration: 4,
+                                            duration: isMobile ? 6 : 4,
                                             repeat: Infinity,
-                                            delay: (i % 5) * 0.5,
+                                            delay: (i % 5) * 0.6,
                                             ease: "easeInOut",
                                         }}
-                                        filter="url(#neonGlow)"
+                                        filter={isMobile ? "none" : "url(#neonGlow)"}
                                     />
                                 ))}
                             </>
