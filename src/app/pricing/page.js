@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Menu, X } from "lucide-react";
 
 export default function PricingPage() {
     const [isAnnual, setIsAnnual] = React.useState(false);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const plans = [
         {
@@ -37,29 +38,120 @@ export default function PricingPage() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#F5F3FF] via-[#F0FDF4] to-[#F5F3FF] text-[#1A0B5E] font-sans selection:bg-emerald-200 selection:text-emerald-900">
             {/* Navigation */}
-            <header className="fixed top-0 left-0 right-0 z-[100] mx-auto max-w-6xl px-4 pt-6">
-                <nav className="flex items-center justify-between rounded-full border border-white/10 bg-[#1A0B5E] px-6 py-3 shadow-xl shadow-[#1A0B5E]/20 backdrop-blur-sm">
-                    <div className="flex items-center">
-                        <Link href="/" className="hover:opacity-80 transition-opacity">
-                            <img src="/logo.png" alt="GEOMODI" className="h-6 w-auto brightness-200" />
-                        </Link>
+            <header className="fixed top-0 left-0 right-0 z-[100] mx-auto max-w-6xl px-3 pt-4 md:px-4 md:pt-6">
+                <nav className={`mx-auto flex items-center justify-between rounded-[2rem] border border-white/10 bg-[#1A0B5E] px-4 py-3 shadow-xl shadow-[#1A0B5E]/20 backdrop-blur-sm transition-all duration-300 md:rounded-full md:px-6 ${isMenuOpen ? "rounded-[2rem]" : ""}`}>
+                    <div className="flex w-full items-center justify-between gap-4">
+                        <div className="flex flex-1 items-center">
+                            <Link href="/" className="hover:opacity-80 transition-opacity">
+                                <img src="/logo.png" alt="GEOMODI" className="h-5 w-auto brightness-200 md:h-6" />
+                            </Link>
+                        </div>
+
+                        <div className="hidden md:flex flex-1 justify-center items-center gap-8 text-white/70">
+                            <Link href="/#soluciones" className="text-sm font-medium hover:text-white transition-colors">
+                                Soluciones
+                            </Link>
+                            <Link href="/pricing" className="text-sm font-medium hover:text-white transition-colors">
+                                Planes
+                            </Link>
+                        </div>
+
+                        <div className="flex items-center gap-3 md:flex-1 md:justify-end">
+                            <Link
+                                href="/"
+                                className="hidden sm:block rounded-full bg-emerald-300 px-5 py-2 text-sm font-semibold text-black shadow-lg shadow-emerald-400/20 hover:bg-emerald-200"
+                            >
+                                Volver
+                            </Link>
+
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white md:hidden"
+                            >
+                                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                            </button>
+                        </div>
                     </div>
-                    <div className="flex justify-end">
-                        <Link
-                            href="/"
-                            className="rounded-full bg-emerald-300 px-5 py-2 text-sm font-semibold text-black shadow-lg shadow-emerald-400/20 hover:bg-emerald-200"
-                        >
-                            Volver
-                        </Link>
-                    </div>
+
+                    {/* Mobile Menu Overlay */}
+                    <AnimatePresence>
+                        {isMenuOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0, y: -10 }}
+                                animate={{ opacity: 1, height: "auto", y: 0 }}
+                                exit={{ opacity: 0, height: 0, y: -10 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                className="absolute left-0 right-0 top-full mt-2 overflow-hidden rounded-[2rem] border border-white/10 bg-[#1A0B5E] p-6 shadow-2xl backdrop-blur-3xl md:hidden"
+                            >
+                                <div className="flex flex-col gap-6">
+                                    <Link
+                                        href="/#soluciones"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-lg font-medium text-white/70 hover:text-white transition-colors"
+                                    >
+                                        Soluciones
+                                    </Link>
+                                    <Link
+                                        href="/pricing"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-lg font-medium text-white/70 hover:text-white transition-colors"
+                                    >
+                                        Planes
+                                    </Link>
+                                    <Link href="/" onClick={() => setIsMenuOpen(false)}>
+                                        <button className="w-full rounded-2xl bg-emerald-300 py-4 font-bold text-black shadow-lg">
+                                            Volver al inicio
+                                        </button>
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </nav>
             </header>
 
             <main className="relative pt-32 pb-20 px-4">
                 {/* Background Decorative Blobs */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-200/40 rounded-full blur-[120px]" />
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-100/40 rounded-full blur-[120px]" />
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.4, 1],
+                            x: [0, 100, 0],
+                            y: [0, 50, 0],
+                        }}
+                        transition={{
+                            duration: 15, // Made slower
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute top-[-15%] left-[-15%] w-[900px] h-[900px] bg-violet-500/15 rounded-full blur-[180px]"
+                    />
+                    <motion.div
+                        animate={{
+                            scale: [1.3, 1, 1.3],
+                            x: [0, -120, 0],
+                            y: [0, -80, 0],
+                        }}
+                        transition={{
+                            duration: 18, // Made slower
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute bottom-[-15%] right-[-15%] w-[1000px] h-[1000px] bg-emerald-400/10 rounded-full blur-[200px]"
+                    />
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.5, 1],
+                            x: [0, 80, 0],
+                            y: [0, -100, 0],
+                        }}
+                        transition={{
+                            duration: 22, // Made slower
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute top-1/2 left-1/4 w-[700px] h-[700px] bg-violet-400/10 rounded-full blur-[160px]"
+                    />
                 </div>
 
                 <div className="relative z-10 max-w-5xl mx-auto text-center">

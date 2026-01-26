@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { Play, Sparkles, Terminal, ShieldCheck } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { Play, Sparkles, Terminal, ShieldCheck, Menu, X } from "lucide-react";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 export default function GeoModiLandingReplica() {
@@ -11,6 +11,7 @@ export default function GeoModiLandingReplica() {
   const [email, setEmail] = React.useState("");
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const ease = [0.22, 1, 0.36, 1];
 
@@ -91,17 +92,17 @@ export default function GeoModiLandingReplica() {
 
       <div className="relative z-10">
         {/* Top bar */}
-        <header className="fixed top-0 left-0 right-0 z-[100] mx-auto max-w-6xl px-4 pt-6">
+        <header className="fixed top-0 left-0 right-0 z-[100] mx-auto max-w-6xl px-3 pt-4 md:px-4 md:pt-6">
           <motion.nav
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="flex items-center justify-between rounded-full border border-white/20 bg-white/10 px-6 py-3 shadow-lg shadow-black/10 backdrop-blur-2xl backdrop-saturate-150"
+            className={`mx-auto flex items-center justify-between rounded-[2rem] border border-white/20 bg-white/10 px-4 py-3 shadow-lg shadow-black/10 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 md:rounded-full md:px-6 ${isMenuOpen ? "rounded-[2rem] bg-black/90" : ""}`}
           >
-            <div className="flex w-full items-center justify-between">
+            <div className="flex w-full items-center justify-between gap-4">
               <div className="flex flex-1 items-center">
                 <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                  <img src="/logo.png" alt="GEOMODI" className="h-6 w-auto" />
+                  <img src="/logo.png" alt="GEOMODI" className="h-5 w-auto md:h-6" />
                 </a>
               </div>
 
@@ -114,18 +115,60 @@ export default function GeoModiLandingReplica() {
                 </Link>
               </div>
 
-              <div className="flex flex-1 justify-end">
-                <Link href="/pricing">
+              <div className="flex items-center gap-3 md:flex-1 md:justify-end">
+                <Link href="/pricing" className="hidden sm:block">
                   <motion.button
                     whileHover={reduce ? {} : { y: -1, scale: 1.01 }}
                     whileTap={reduce ? {} : { scale: 0.99 }}
-                    className="rounded-full bg-emerald-300 px-5 py-2 text-sm font-semibold text-black shadow-lg shadow-emerald-300/25 hover:bg-emerald-200 cursor-pointer"
+                    className="rounded-full bg-emerald-300 px-4 py-1.5 text-xs font-semibold text-black shadow-lg shadow-emerald-300/25 hover:bg-emerald-200 cursor-pointer md:px-5 md:py-2 md:text-sm"
                   >
                     Comenzar ahora
                   </motion.button>
                 </Link>
+
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white md:hidden"
+                >
+                  {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
               </div>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+              {isMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0, y: -10 }}
+                  animate={{ opacity: 1, height: "auto", y: 0 }}
+                  exit={{ opacity: 0, height: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute left-0 right-0 top-full mt-2 overflow-hidden rounded-[2rem] border border-white/10 bg-black/95 p-6 shadow-2xl backdrop-blur-3xl md:hidden"
+                >
+                  <div className="flex flex-col gap-6">
+                    <a
+                      href="#soluciones"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-lg font-medium text-white/70 hover:text-white transition-colors"
+                    >
+                      Soluciones
+                    </a>
+                    <Link
+                      href="/pricing"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-lg font-medium text-white/70 hover:text-white transition-colors"
+                    >
+                      Planes
+                    </Link>
+                    <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>
+                      <button className="w-full rounded-2xl bg-emerald-300 py-4 font-bold text-black shadow-lg">
+                        Comenzar ahora
+                      </button>
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.nav>
         </header>
 
@@ -167,14 +210,14 @@ export default function GeoModiLandingReplica() {
                 <div className="relative w-full max-w-lg">
                   <input
                     type="text"
-                    placeholder="Ingresá URL de un producto de tu tienda"
-                    className="w-full rounded-2xl border border-emerald-400/40 bg-white/5 px-8 py-5 text-emerald-50 text-lg placeholder-emerald-400/40 focus:border-emerald-300/80 focus:outline-none focus:ring-2 focus:ring-emerald-300/10 transition-all font-space"
+                    placeholder="Ingresá URL de tu producto"
+                    className="w-full rounded-2xl border border-emerald-400/40 bg-white/5 px-6 py-4 text-emerald-50 text-base placeholder-emerald-400/40 focus:border-emerald-300/80 focus:outline-none focus:ring-2 focus:ring-emerald-300/10 transition-all font-space md:px-8 md:py-5 md:text-lg"
                   />
                 </div>
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full rounded-2xl bg-emerald-300 px-10 py-5 text-lg font-bold text-black shadow-xl shadow-emerald-400/20 hover:bg-emerald-200 transition-colors sm:w-auto whitespace-nowrap font-space"
+                  className="w-full rounded-2xl bg-emerald-300 px-8 py-4 text-base font-bold text-black shadow-xl shadow-emerald-400/20 hover:bg-emerald-200 transition-colors sm:w-auto md:px-10 md:py-5 md:text-lg whitespace-nowrap font-space"
                 >
                   Analizar ahora
                 </motion.button>
@@ -530,16 +573,16 @@ export default function GeoModiLandingReplica() {
 
             {/* Bottom LOGO Section */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.8 }}
-              transition={{ duration: 1.2, delay: 0.2 }}
-              className="mt-32 w-full max-w-2xl px-8 flex justify-center"
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 1.2, delay: 0.1 }}
+              className="mt-12 md:mt-32 w-full max-w-2xl px-6 md:px-8 flex justify-center"
             >
               <img
                 src="/logo_high_res.png"
                 alt="GEO Logo"
-                className="w-full h-auto object-contain opacity-90 select-none drop-shadow-[0_0_30px_rgba(255,255,255,0.05)]"
+                className="w-full h-auto max-w-[280px] md:max-w-none object-contain opacity-90 select-none drop-shadow-[0_0_30px_rgba(255,255,255,0.05)]"
               />
             </motion.div>
           </section>
