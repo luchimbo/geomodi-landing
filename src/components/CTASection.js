@@ -94,7 +94,7 @@ export default function CTASection() {
             >
                 <img
                     src="/logo_high_res.png"
-                    alt="GEO Logo"
+                    alt="Logo de GeoModi - Expertos en Generative Engine Optimization (GEO)"
                     className="w-full h-auto max-w-[280px] md:max-w-none object-contain opacity-90 select-none drop-shadow-[0_0_30px_rgba(255,255,255,0.05)]"
                     loading="lazy"
                     decoding="async"

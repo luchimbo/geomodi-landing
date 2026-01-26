@@ -22,10 +22,43 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  title: "GeoModi - IA Generativa para tu marca",
-  description: "Optimiza la visibilidad de tu marca en la era de la IA generativa.",
+  title: "GeoModi - IA Generativa para tu marca | Líder en GEO",
+  description: "Optimiza la visibilidad de tu marca en la era de la IA generativa. Transforma tu catálogo de TiendaNube para que ChatGPT, Gemini y Claude te recomienden.",
+  keywords: ["GEO", "Generative Engine Optimization", "IA para e-commerce", "TiendaNube", "Optimización IA", "ChatGPT SEO", "Marketing Digital 2026"],
+  authors: [{ name: "GeoModi Team" }],
+  metadataBase: new URL('https://geomodi.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "GeoModi - Domina la búsqueda en la era de la IA",
+    description: "La tecnología que traduce tu e-commerce al idioma de la IA. Aparece en las respuestas de ChatGPT y Gemini.",
+    url: 'https://geomodi.com',
+    siteName: 'GeoModi',
+    images: [
+      {
+        url: '/logo_high_res.png',
+        width: 1200,
+        height: 630,
+        alt: 'GeoModi - IA Generativa para Marcas',
+      },
+    ],
+    locale: 'es_AR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GeoModi - IA Generativa para Marcas',
+    description: '¿Tu marca está preparada para 2026? Optimizá tu catálogo para buscadores de IA.',
+    images: ['/logo_high_res.png'],
+  },
   icons: {
     icon: "/icon.png",
+    apple: "/icon.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
