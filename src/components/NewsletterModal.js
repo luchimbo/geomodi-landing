@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export default function NewsletterModal({ isModalOpen, setIsModalOpen }) {
     const [email, setEmail] = React.useState("");
@@ -24,6 +25,7 @@ export default function NewsletterModal({ isModalOpen, setIsModalOpen }) {
 
                 // Since 'no-cors' doesn't allow reading the response, we assuming success
                 setIsSubmitted(true);
+                toast.success("¡Suscripción exitosa!");
                 setTimeout(() => {
                     setIsModalOpen(false);
                     setIsSubmitted(false);
@@ -32,7 +34,7 @@ export default function NewsletterModal({ isModalOpen, setIsModalOpen }) {
                 }, 2500);
             } catch (error) {
                 console.error('Error:', error);
-                alert('Hubo un error. Por favor intenta de nuevo.');
+                toast.error("Error al registrarte. Intenta de nuevo.");
                 setIsLoading(false);
             }
         }

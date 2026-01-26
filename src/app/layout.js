@@ -3,6 +3,7 @@ import "./globals.css";
 import { PHProvider } from "./providers";
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import { Toaster } from 'sonner'
 
 import PostHogPageView from './PostHogPageView'
 
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
           <Suspense fallback={null}>
             <PostHogPageView />
           </Suspense>
+          <Toaster position="top-center" richColors />
           {children}
         </body>
       </PHProvider>

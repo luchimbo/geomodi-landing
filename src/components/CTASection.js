@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export default function CTASection() {
     const [email, setEmail] = React.useState("");
@@ -23,6 +24,7 @@ export default function CTASection() {
 
                 // Since 'no-cors' doesn't allow reading the response, we assume success if no exception is thrown
                 setIsSubmitted(true);
+                toast.success("¡Registro exitoso! Pronto nos contactaremos.");
                 e.target.reset();
                 setTimeout(() => {
                     setIsSubmitted(false);
@@ -30,7 +32,7 @@ export default function CTASection() {
                 }, 3000);
             } catch (error) {
                 console.error('Error:', error);
-                alert('Hubo un error. Por favor intenta de nuevo.');
+                toast.error("Hubo un error al enviar tu email. Intenta de nuevo.");
                 setIsLoading(false);
             }
         }
