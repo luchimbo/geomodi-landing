@@ -33,10 +33,10 @@ export default function Hero({ stagger, elegantFade }) {
                     className="mx-auto flex flex-col items-center text-center text-[32px] font-bold leading-tight text-white/95 md:text-[56px] font-space"
                 >
                     <motion.span variants={elegantFade} className="md:whitespace-nowrap">
-                        Domina el <span className="text-emerald-300">GEO</span>: Optimizá tu TiendaNube
+                        El 50% del tráfico de búsqueda tradicional 
                     </motion.span>
                     <motion.span variants={elegantFade} className="md:whitespace-nowrap">
-                        para aparecer en ChatGPT y buscadores de IA.
+                        será reemplazado por IA generativa en 2026.
                     </motion.span>
                 </motion.h1>
                 <motion.p
@@ -44,7 +44,7 @@ export default function Hero({ stagger, elegantFade }) {
                     transition={{ delay: 0.2 }}
                     className="mt-8 text-[22px] md:text-[36px] font-light text-white/65 font-space"
                 >
-                    El 50% del tráfico de búsqueda será reemplazado por IA. ¿Estás listo?
+                    ¿Tu marca está preparada?
                 </motion.p>
 
                 {/* URL Input CTA */}
