@@ -3,6 +3,22 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function Hero({ stagger, elegantFade }) {
+    const [storeUrl, setStoreUrl] = React.useState("");
+
+    const handleAnalyzeSubmit = (e) => {
+        e.preventDefault();
+        const trimmedUrl = storeUrl.trim();
+
+        // Validate: don't submit if empty
+        if (!trimmedUrl) {
+            return;
+        }
+
+        // Encode URL and redirect
+        const encodedUrl = encodeURIComponent(trimmedUrl);
+        window.location.href = `https://app.geomodi.ai?pending_url=${encodedUrl}`;
+    };
+
     return (
         <section className="min-h-screen flex flex-col items-center justify-center px-4 relative">
             <motion.div
@@ -32,26 +48,30 @@ export default function Hero({ stagger, elegantFade }) {
                 </motion.p>
 
                 {/* URL Input CTA */}
-                <motion.div
+                <motion.form
                     variants={elegantFade}
                     transition={{ delay: 0.3 }}
+                    onSubmit={handleAnalyzeSubmit}
                     className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row"
                 >
                     <div className="relative w-full max-w-lg">
                         <input
                             type="text"
+                            value={storeUrl}
+                            onChange={(e) => setStoreUrl(e.target.value)}
                             placeholder="Ingresá URL de tu producto"
                             className="w-full rounded-2xl border border-emerald-400/40 bg-white/5 px-6 py-4 text-emerald-50 text-base placeholder-emerald-400/40 focus:border-emerald-300/80 focus:outline-none focus:ring-2 focus:ring-emerald-300/10 transition-all font-space md:px-8 md:py-5 md:text-lg"
                         />
                     </div>
                     <motion.button
+                        type="submit"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         className="w-full rounded-2xl bg-emerald-300 px-8 py-4 text-base font-bold text-black shadow-xl shadow-emerald-400/20 hover:bg-emerald-200 transition-colors sm:w-auto md:px-10 md:py-5 md:text-lg whitespace-nowrap font-space"
                     >
                         Analizar ahora
                     </motion.button>
-                </motion.div>
+                </motion.form>
             </motion.div>
         </section>
     );
