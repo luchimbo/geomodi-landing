@@ -14,7 +14,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dar
     const logoBrightness = theme === "dark" ? "" : "brightness-200";
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-[100] mx-auto max-w-6xl px-3 pt-4 md:px-4 md:pt-6">
+        <header className="fixed top-0 left-0 right-0 z-[100] mx-auto max-w-6xl px-3 pt-4 md:px-4 md:pt-6 z-40">
             <motion.nav
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
