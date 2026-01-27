@@ -10,12 +10,12 @@ export default function PrelaunchPage() {
     const [inputValue, setInputValue] = useState("");
 
     const logos = [
-        '/assets/prelaunch/logo-1.png',
-        '/assets/prelaunch/logo-2.png',
-        '/assets/prelaunch/logo-3.png',
-        '/assets/prelaunch/logo-4.png',
-        '/assets/prelaunch/logo-5.png',
-        '/assets/prelaunch/logo-6.png',
+        '/assets/prelaunch/tienda-nube.png',
+        '/assets/prelaunch/shopify.png',
+        '/assets/prelaunch/wix.png',
+        '/assets/prelaunch/woo-commerce.png',
+        '/assets/prelaunch/mercado-libre.png',
+        '/assets/prelaunch/empretienda.png',
     ];
 
     const isButtonActive = selectedLogo !== null && inputValue.trim() !== "";
