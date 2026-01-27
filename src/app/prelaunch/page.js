@@ -24,7 +24,9 @@ export default function PrelaunchPage() {
         if (!isButtonActive) return;
 
         if (selectedLogo === 0) {
-            // Do nothing for the first logo
+            const trimmedUrl = inputValue.trim();
+            const encodedUrl = encodeURIComponent(trimmedUrl);
+            window.location.href = `https://app.geomodi.ai?pending_url=${encodedUrl}`;
             return;
         }
 
