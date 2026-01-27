@@ -19,7 +19,12 @@ export default function CTASection() {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ email: formEmailSource, timestamp: new Date().toISOString() }),
+                    body: JSON.stringify({
+                        email: formEmailSource,
+                        platform: "Landing CTA",
+                        storeUrl: "Ingreso Directo",
+                        timestamp: new Date().toISOString()
+                    }),
                 });
 
                 // Since 'no-cors' doesn't allow reading the response, we assume success if no exception is thrown

@@ -1,18 +1,43 @@
 "use client";
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
 function PrelaunchContent() {
     const searchParams = useSearchParams();
     const isOther = searchParams.has('other');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Modal Form State
     const [email, setEmail] = useState("");
     const [platform, setPlatform] = useState("");
     const [storeUrl, setStoreUrl] = useState("");
+
+    // Effect to decode params from URL
+    useEffect(() => {
+        if (!isOther) {
+            const logoParam = searchParams.get('logo');
+            const pageParam = searchParams.get('page');
+
+            if (logoParam) {
+                try {
+                    const decodedLogo = atob(logoParam);
+                    // Extract name from path (e.g. logo-1)
+                    const platformName = decodedLogo.split('/').pop().replace('.png', '');
+                    setPlatform(platformName);
+                } catch (e) { console.error("Error decoding logo", e); }
+            }
+
+            if (pageParam) {
+                try {
+                    setStoreUrl(atob(pageParam));
+                } catch (e) { console.error("Error decoding page", e); }
+            }
+        }
+    }, [searchParams, isOther]);
 
     // Validation Logic
     const isFormValid = () => {
@@ -22,12 +47,34 @@ function PrelaunchContent() {
         return email.trim() !== "";
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!isFormValid()) return;
-        // Placeholder for future action
-        console.log("Form Submitted", { email, platform, storeUrl, isOther });
-        setIsModalOpen(false);
+        if (!isFormValid() || isLoading) return;
+
+        setIsLoading(true);
+        try {
+            await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({
+                    email,
+                    platform: platform || "Other",
+                    storeUrl: storeUrl || "",
+                    timestamp: new Date().toISOString()
+                }),
+            });
+
+            toast.success("¡Gracias! Te avisaremos en cuanto esté disponible.");
+            setIsModalOpen(false);
+            setEmail("");
+            // Don't reset platform/storeUrl if they came from URL
+        } catch (error) {
+            console.error('Error:', error);
+            toast.error("Hubo un error al registrarte. Intentalo de nuevo.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -164,13 +211,13 @@ function PrelaunchContent() {
                                 <div className="pt-2">
                                     <button
                                         type="submit"
-                                        disabled={!isFormValid()}
+                                        disabled={!isFormValid() || isLoading}
                                         className={`
                                             w-full rounded-full py-3 font-bold text-white shadow-md transition-all
-                                            ${isFormValid() ? 'bg-[#29765E] hover:bg-[#1E5645] transform hover:scale-[1.02]' : 'bg-gray-400 cursor-not-allowed opacity-70'}
+                                            ${isFormValid() && !isLoading ? 'bg-[#29765E] hover:bg-[#1E5645] transform hover:scale-[1.02]' : 'bg-gray-400 cursor-not-allowed opacity-70'}
                                         `}
                                     >
-                                        Confirmar
+                                        {isLoading ? 'Enviando...' : 'Confirmar'}
                                     </button>
                                 </div>
                             </form>

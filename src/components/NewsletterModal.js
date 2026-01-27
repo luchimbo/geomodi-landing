@@ -20,7 +20,12 @@ export default function NewsletterModal({ isModalOpen, setIsModalOpen }) {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
+                    body: JSON.stringify({
+                        email,
+                        platform: "Newsletter Modal",
+                        storeUrl: "Ingreso Directo",
+                        timestamp: new Date().toISOString()
+                    }),
                 });
 
                 // Since 'no-cors' doesn't allow reading the response, we assuming success
