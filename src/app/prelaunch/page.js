@@ -1,8 +1,14 @@
+"use client";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function PrelaunchPage() {
-    // Using the logos we moved. 
+    const router = useRouter();
+    const [selectedLogo, setSelectedLogo] = useState(null);
+    const [inputValue, setInputValue] = useState("");
+
     const logos = [
         '/assets/prelaunch/logo-1.png',
         '/assets/prelaunch/logo-2.png',
@@ -11,6 +17,24 @@ export default function PrelaunchPage() {
         '/assets/prelaunch/logo-5.png',
         '/assets/prelaunch/logo-6.png',
     ];
+
+    const isButtonActive = selectedLogo !== null && inputValue.trim() !== "";
+
+    const handleNextStep = () => {
+        if (!isButtonActive) return;
+
+        if (selectedLogo === 0) {
+            // Do nothing for the first logo
+            return;
+        }
+
+        const logoSrc = logos[selectedLogo];
+        // Encode to base64
+        const logoBase64 = btoa(logoSrc);
+        const pageBase64 = btoa(inputValue);
+
+        router.push(`/prelaunch-soon?logo=${logoBase64}&page=${pageBase64}`);
+    };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#E0F7FA] via-[#F3E5F5] to-[#E1BEE7] flex flex-col items-center justify-center p-4 relative overflow-hidden font-space">
@@ -43,6 +67,8 @@ export default function PrelaunchPage() {
                         <input
                             type="text"
                             placeholder="mitienda.com.ar"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
                             className="w-full px-6 py-4 rounded-lg bg-[#9FA8DA]/30 text-[#1A237E] placeholder-[#5C6BC0] focus:outline-none focus:ring-2 focus:ring-[#7986CB]  text-lg italic shadow-inner backdrop-blur-sm transition-all"
                         />
                     </div>
@@ -55,7 +81,14 @@ export default function PrelaunchPage() {
 
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
                         {logos.map((src, i) => (
-                            <button key={i} className="bg-[#E0E0E0]/80 backdrop-blur-sm rounded-2xl p-6 flex items-center justify-center hover:bg-[#D1C4E9] hover:shadow-lg transition-all duration-300 h-28 w-full group shadow-md border border-white/20">
+                            <button
+                                key={i}
+                                onClick={() => setSelectedLogo(i)}
+                                className={`
+                                    rounded-2xl p-6 flex items-center justify-center transition-all duration-300 h-28 w-full group shadow-md border border-white/20
+                                    ${selectedLogo === i ? 'bg-[#D1C4E9] shadow-lg scale-105 ring-2 ring-[#7986CB]' : 'bg-[#E0E0E0]/80 backdrop-blur-sm hover:bg-[#D1C4E9] hover:shadow-lg'}
+                                `}
+                            >
                                 <div className="relative w-full h-full transform group-hover:scale-105 transition-transform">
                                     <Image
                                         src={src}
@@ -66,12 +99,11 @@ export default function PrelaunchPage() {
                                 </div>
                             </button>
                         ))}
-                        {/* Placeholder for items if needed to balance grid, though we have 6 now which is perfect for 3 cols */}
                     </div>
                 </div>
 
                 <div className="pt-4">
-                    <Link href="#" className="text-[#4527A0] underline text-base hover:text-[#5E35B1] transition-colors">
+                    <Link href="/prelaunch-soon?other" className="text-[#4527A0] underline text-base hover:text-[#5E35B1] transition-colors">
                         Utilizo otra plataforma
                     </Link>
                 </div>
@@ -81,8 +113,12 @@ export default function PrelaunchPage() {
 
             <div className="fixed bottom-8 right-8">
                 <button
-                    disabled
-                    className="bg-[#7F848C] text-white px-8 py-3 rounded-full font-medium text-lg disabled:opacity-70 disabled:cursor-not-allowed shadow-lg transition-all"
+                    disabled={!isButtonActive}
+                    onClick={handleNextStep}
+                    className={`
+                        text-white px-8 py-3 rounded-full font-medium text-lg shadow-lg transition-all
+                        ${isButtonActive ? 'bg-[#29765E] hover:bg-[#1E5645] cursor-pointer' : 'bg-[#7F848C] opacity-70 cursor-not-allowed'}
+                    `}
                 >
                     Siguiente paso
                 </button>
