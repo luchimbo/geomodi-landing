@@ -1,6 +1,35 @@
+"use client";
+import React, { useState, Suspense } from 'react';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export default function PrelaunchSoonPage() {
+function PrelaunchContent() {
+    const searchParams = useSearchParams();
+    const isOther = searchParams.has('other');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // Modal Form State
+    const [email, setEmail] = useState("");
+    const [platform, setPlatform] = useState("");
+    const [storeUrl, setStoreUrl] = useState("");
+
+    // Validation Logic
+    const isFormValid = () => {
+        if (isOther) {
+            return email.trim() !== "" && platform.trim() !== "" && storeUrl.trim() !== "";
+        }
+        return email.trim() !== "";
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!isFormValid()) return;
+        // Placeholder for future action
+        console.log("Form Submitted", { email, platform, storeUrl, isOther });
+        setIsModalOpen(false);
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#E0F7FA] via-[#F3E5F5] to-[#E1BEE7] flex flex-col items-center justify-center p-4 relative overflow-hidden font-space">
 
@@ -54,12 +83,109 @@ export default function PrelaunchSoonPage() {
                         ¡Te ofrecemos un beneficio exclusivo cuando se habilite la integración!
                     </p>
 
-                    <button className="bg-[#1A237E] text-white px-8 py-3 rounded-full font-medium text-sm md:text-base hover:bg-[#283593] transition-colors shadow-lg">
+                    <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="bg-[#1A237E] text-white px-8 py-3 rounded-full font-medium text-sm md:text-base hover:bg-[#283593] transition-colors shadow-lg"
+                    >
                         Avisame cuando esté disponible
                     </button>
                 </div>
 
             </div>
+
+            {/* Modal */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
+                        onClick={() => setIsModalOpen(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-8 shadow-2xl border border-white/40"
+                        >
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            <h3 className="text-2xl font-bold text-[#1A237E] font-space mb-6 text-center">
+                                {isOther ? 'Completá tus datos' : 'Dejanos tu email'}
+                            </h3>
+
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-[#1A237E]/80 mb-1 ml-1">Email de contacto</label>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="tu@email.com"
+                                        className="w-full px-4 py-3 rounded-xl bg-[#F5F7FA] border border-[#E0E0E0] text-[#1A237E] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7986CB] transition-all"
+                                    />
+                                </div>
+
+                                {isOther && (
+                                    <>
+                                        <div>
+                                            <label className="block text-sm font-medium text-[#1A237E]/80 mb-1 ml-1">Plataforma de la tienda</label>
+                                            <input
+                                                type="text"
+                                                value={platform}
+                                                onChange={(e) => setPlatform(e.target.value)}
+                                                placeholder="Ej: Shopify, WooCommerce"
+                                                className="w-full px-4 py-3 rounded-xl bg-[#F5F7FA] border border-[#E0E0E0] text-[#1A237E] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7986CB] transition-all"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-[#1A237E]/80 mb-1 ml-1">URL de la tienda</label>
+                                            <input
+                                                type="text"
+                                                value={storeUrl}
+                                                onChange={(e) => setStoreUrl(e.target.value)}
+                                                placeholder="mitienda.com"
+                                                className="w-full px-4 py-3 rounded-xl bg-[#F5F7FA] border border-[#E0E0E0] text-[#1A237E] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7986CB] transition-all"
+                                            />
+                                        </div>
+                                    </>
+                                )}
+
+                                <div className="pt-2">
+                                    <button
+                                        type="submit"
+                                        disabled={!isFormValid()}
+                                        className={`
+                                            w-full rounded-full py-3 font-bold text-white shadow-md transition-all
+                                            ${isFormValid() ? 'bg-[#29765E] hover:bg-[#1E5645] transform hover:scale-[1.02]' : 'bg-gray-400 cursor-not-allowed opacity-70'}
+                                        `}
+                                    >
+                                        Confirmar
+                                    </button>
+                                </div>
+                            </form>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
+    );
+}
+
+export default function PrelaunchSoonPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-[#E0F7FA]"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1A237E]"></div></div>}>
+            <PrelaunchContent />
+        </Suspense>
     );
 }
