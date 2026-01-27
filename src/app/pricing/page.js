@@ -25,7 +25,8 @@ export default function PricingPage() {
             name: "PRO",
             description: "Para tiendas que quieren aparecer y mantenerse visibles en IA",
             credits: "150 créditos por mes",
-            price: "USD 29 / mes",
+            originalPrice: "$80.000 / mes",
+            price: "$39.999 por mes",
             includes: "Hasta 150 productos optimizados por mes",
             note: "1 crédito = 1 producto optimizado y activo",
             buttonText: "Suscribirme ahora",
@@ -95,7 +96,7 @@ export default function PricingPage() {
                             Planes que se adaptan al tamaño de tu tienda y a cada etapa de crecimiento.
                         </motion.p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 max-w-4xl mx-auto items-end">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 max-w-4xl mx-auto items-stretch">
                             {plans.map((plan, index) => (
                                 <motion.div
                                     key={plan.name}
@@ -105,7 +106,7 @@ export default function PricingPage() {
                                     className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:translate-y-[-8px] backdrop-blur-xl border border-white/40 ${plan.highlight
                                         ? "bg-[#E6E6FA] ring-1 ring-[#1A0B5E]/10 z-20 shadow-violet-200/50"
                                         : "bg-[#E6E6FA]/40 hover:bg-[#E6E6FA]/60 z-10"
-                                        }`}
+                                        } ${!plan.tag ? "md:mt-[44px]" : ""}`}
                                 >
                                     {/* Gloss Reflection */}
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none" />
@@ -114,7 +115,7 @@ export default function PricingPage() {
                                     <div className="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine transition-all duration-700" />
 
                                     {plan.tag && (
-                                        <div className="bg-[#1A0B5E] text-white py-3 text-xs font-bold tracking-[0.2em] uppercase relative z-10 w-full text-center">
+                                        <div className="bg-[#1A0B5E] text-white py-3 text-xs font-bold tracking-[0.2em] uppercase relative z-10 w-full text-center h-[44px]">
                                             {plan.tag}
                                         </div>
                                     )}
@@ -126,7 +127,7 @@ export default function PricingPage() {
                                                 <h2 className="text-4xl font-bold font-space mt-1">{plan.name}</h2>
                                             </div>
 
-                                            <div className="min-h-[80px] mb-8">
+                                            <div className="min-h-[80px] mb-4">
                                                 <p className="text-lg text-[#3E3E70] leading-relaxed">
                                                     {plan.description}
                                                 </p>
@@ -149,6 +150,13 @@ export default function PricingPage() {
                                             </div>
                                             <div>
                                                 <h4 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-60">Precio</h4>
+                                                {plan.originalPrice ? (
+                                                    <p className="text-lg line-through text-[#3E3E70]/50 font-space mb-1">
+                                                        {plan.originalPrice}
+                                                    </p>
+                                                ) : (
+                                                    <div className="text-lg font-space mb-1 h-[28px]" />
+                                                )}
                                                 <p className="text-3xl font-bold font-space leading-none">{plan.price}</p>
                                             </div>
                                         </div>
