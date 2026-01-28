@@ -17,6 +17,7 @@ export default function PricingPage() {
             price: "$0",
             includes: "1 producto optimizado",
             buttonText: "Probar gratis",
+            link: "https://app.geomodi.ai/",
             highlight: false,
             color: "bg-[#E6E6FA]/40",
             textColor: "text-[#1A0B5E]",
@@ -30,6 +31,7 @@ export default function PricingPage() {
             includes: "Hasta 150 productos optimizados por mes",
             note: "1 crédito = 1 producto optimizado y activo",
             buttonText: "Suscribirme ahora",
+            link: "#",
             highlight: true,
             color: "bg-[#E6E6FA]",
             textColor: "text-[#1A0B5E]",
@@ -161,14 +163,15 @@ export default function PricingPage() {
                                             </div>
                                         </div>
 
-                                        <button
-                                            className={`w-full py-5 rounded-3xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 mt-auto ${plan.highlight
+                                        <Link
+                                            href={plan.link}
+                                            className={`w-full py-5 rounded-3xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 mt-auto text-center block ${plan.highlight
                                                 ? "bg-[#1A0B5E] text-white hover:bg-[#2A1B7E] shadow-[#1A0B5E]/30 border-2 border-transparent"
                                                 : "bg-[#1A0B5E]/5 border-2 border-[#1A0B5E] text-[#1A0B5E] hover:bg-[#1A0B5E]/10"
                                                 }`}
                                         >
                                             {plan.buttonText}
-                                        </button>
+                                        </Link>
                                     </div>
                                 </motion.div>
                             ))}
