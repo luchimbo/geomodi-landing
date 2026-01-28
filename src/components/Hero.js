@@ -91,7 +91,12 @@ export default function Hero({ stagger, elegantFade }) {
                     </div>
 
                     {/* Store Selectors */}
-                    <div className="w-full max-w-2xl space-y-10">
+                    <div className="w-full max-w-2xl space-y-8">
+                        <div className="text-center">
+                            <p className="text-white/60 text-lg font-space italic">
+                                Selecciona tu plataforma de E-commerce
+                            </p>
+                        </div>
                         <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
                             {logos.map((src, i) => (
                                 <button
