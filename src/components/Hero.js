@@ -85,7 +85,7 @@ export default function Hero({ stagger, elegantFade }) {
                             type="text"
                             value={storeUrl}
                             onChange={(e) => setStoreUrl(e.target.value)}
-                            placeholder="Ingresá URL de tu producto"
+                            placeholder="Ingresá URL de tu tienda"
                             className="w-full rounded-[2rem] border border-emerald-400/40 bg-white/5 px-8 py-5 text-emerald-50 text-xl placeholder-emerald-400/40 focus:border-emerald-300/80 focus:outline-none focus:ring-4 focus:ring-emerald-400/10 transition-all font-space backdrop-blur-sm"
                         />
                     </div>
@@ -123,6 +123,12 @@ export default function Hero({ stagger, elegantFade }) {
                         </div>
 
                         <div className="flex flex-col items-center gap-6">
+                            <Link
+                                href="/prelaunch-soon?other"
+                                className="text-white/40 text-sm hover:text-emerald-300 transition-colors underline decoration-white/10 hover:decoration-emerald-300/30"
+                            >
+                                Utilizo otra plataforma
+                            </Link>
                             <motion.button
                                 type="submit"
                                 whileHover={{ scale: 1.05 }}
@@ -138,12 +144,6 @@ export default function Hero({ stagger, elegantFade }) {
                                 Analizar ahora
                             </motion.button>
 
-                            <Link
-                                href="/prelaunch-soon?other"
-                                className="text-white/40 text-sm hover:text-emerald-300 transition-colors underline decoration-white/10 hover:decoration-emerald-300/30"
-                            >
-                                Utilizo otra plataforma
-                            </Link>
                         </div>
                     </div>
                 </motion.form>
