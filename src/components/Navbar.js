@@ -41,6 +41,19 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dar
                     </div>
 
                     <div className="flex items-center gap-3 md:flex-1 md:justify-end">
+                        <a 
+                            href="https://app.geomodi.ai/login" 
+                            className="hidden sm:block"
+                        >
+                            <motion.button
+                                whileHover={reduce ? {} : { y: -1, scale: 1.01 }}
+                                whileTap={reduce ? {} : { scale: 0.99 }}
+                                className="rounded-full border border-white/30 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/90 backdrop-blur-sm hover:bg-white/10 hover:border-white/40 transition-all cursor-pointer md:px-5 md:py-2 md:text-sm"
+                            >
+                                Entrar
+                            </motion.button>
+                        </a>
+
                         <Link href="/pricing" className="hidden sm:block">
                             <motion.button
                                 whileHover={reduce ? {} : { y: -1, scale: 1.01 }}
@@ -92,11 +105,18 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dar
                                 >
                                     FAQ
                                 </Link>
-                                <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>
-                                    <button className="w-full rounded-2xl bg-emerald-300 py-4 font-bold text-black shadow-lg">
-                                        Comenzar ahora
-                                    </button>
-                                </Link>
+                                <div className="flex flex-col gap-3 pt-2">
+                                    <a href="https://app.geomodi.ai/login" onClick={() => setIsMenuOpen(false)}>
+                                        <button className="w-full rounded-2xl border border-white/30 bg-white/5 py-3 font-medium text-white/90 hover:bg-white/10 transition-all">
+                                            Entrar
+                                        </button>
+                                    </a>
+                                    <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>
+                                        <button className="w-full rounded-2xl bg-emerald-300 py-4 font-bold text-black shadow-lg">
+                                            Comenzar ahora
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         </motion.div>
                     )}
