@@ -141,7 +141,7 @@ export default function Hero({ stagger, elegantFade }) {
                                 `}
                                 disabled={!storeUrl.trim() || selectedStore === null}
                             >
-                                Analizar ahora
+                                Optimizar mi Producto Estrella GRATIS
                             </motion.button>
 
                         </div>

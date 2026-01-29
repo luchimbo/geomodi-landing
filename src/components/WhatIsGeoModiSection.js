@@ -56,7 +56,7 @@ export default function WhatIsGeoModiSection() {
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-600/20 text-violet-400 group-hover:bg-violet-600/30 transition-colors">
                                 <ShieldCheck className="h-8 w-8" />
                             </div>
-                            <h3 className="text-xl font-bold font-space text-white mb-3 tracking-tight">Cero Alucinaciones</h3>
+                            <h3 className="text-xl font-bold font-space text-white mb-3 tracking-tight">Datos Reales Garantizados</h3>
                             <p className="text-white/60 font-space text-[15px] leading-relaxed">
                                 Estructura de datos para que la IA nunca invente información de los productos.
                             </p>
@@ -74,6 +74,27 @@ export default function WhatIsGeoModiSection() {
                     <p className="text-xl md:text-2xl font-space font-medium leading-relaxed text-white/90">
                         En 2026, si la IA no cita a la marca, no existe. <span className="text-emerald-400">GEOMODI</span> otorga la ventaja del primer movimiento para <span className="text-emerald-400">dominar el mercado antes que la competencia.</span>
                     </p>
+                </motion.div>
+
+                {/* Microsoft Authority Block */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.5 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="mt-12 flex flex-col items-center justify-center gap-4"
+                >
+                    <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full backdrop-blur-md">
+                        <img
+                            src="/microsoft-advertising-logo.png"
+                            alt="Microsoft Advertising"
+                            className="h-8 w-auto object-contain brightness-0 invert opacity-90"
+                        />
+                        <div className="h-8 w-[1px] bg-white/20 mx-2"></div>
+                        <span className="text-sm md:text-base text-white/80 font-space font-light tracking-wide">
+                            Tecnología alineada con los nuevos estándares de Microsoft Bing y OpenAI
+                        </span>
+                    </div>
                 </motion.div>
             </div>
         </section>
