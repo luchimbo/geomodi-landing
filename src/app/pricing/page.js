@@ -36,7 +36,7 @@ export default function PricingPage() {
 			originalPrice: "$80.000 / mes",
 			price: "$39.999 por mes",
 			includes: "Hasta 150 productos optimizados por mes",
-			note: "1 crédito = 1 producto optimizado y activo",
+			note: "1 crédito = 1 producto optimizado y activo • 10 mejoras por día",
 			buttonText: "Suscribirme ahora",
 			link: "https://app.geomodi.ai/signup",
 			highlight: true,
@@ -64,19 +64,19 @@ export default function PricingPage() {
 								reduce
 									? {}
 									: {
-											scale: [1, 1.4, 1],
-											x: [0, 100, 0],
-											y: [0, 50, 0],
-										}
+										scale: [1, 1.4, 1],
+										x: [0, 100, 0],
+										y: [0, 50, 0],
+									}
 							}
 							transition={
 								reduce
 									? {}
 									: {
-											duration: 15,
-											repeat: Infinity,
-											ease: "easeInOut",
-										}
+										duration: 15,
+										repeat: Infinity,
+										ease: "easeInOut",
+									}
 							}
 							className="absolute top-[-15%] left-[-15%] w-[900px] h-[900px] bg-violet-500/15 rounded-full blur-[180px]"
 						/>
@@ -85,19 +85,19 @@ export default function PricingPage() {
 								reduce
 									? {}
 									: {
-											scale: [1.3, 1, 1.3],
-											x: [0, -120, 0],
-											y: [0, -80, 0],
-										}
+										scale: [1.3, 1, 1.3],
+										x: [0, -120, 0],
+										y: [0, -80, 0],
+									}
 							}
 							transition={
 								reduce
 									? {}
 									: {
-											duration: 18,
-											repeat: Infinity,
-											ease: "easeInOut",
-										}
+										duration: 18,
+										repeat: Infinity,
+										ease: "easeInOut",
+									}
 							}
 							className="absolute bottom-[-15%] right-[-15%] w-[1000px] h-[1000px] bg-emerald-400/10 rounded-full blur-[200px]"
 						/>
@@ -129,11 +129,10 @@ export default function PricingPage() {
 									initial={{ opacity: 0, y: 30 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-									className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:translate-y-[-8px] backdrop-blur-xl border border-white/40 ${
-										plan.highlight
+									className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:translate-y-[-8px] backdrop-blur-xl border border-white/40 ${plan.highlight
 											? "bg-[#E6E6FA] ring-1 ring-[#1A0B5E]/10 z-20 shadow-violet-200/50"
 											: "bg-[#E6E6FA]/40 hover:bg-[#E6E6FA]/60 z-10"
-									} ${!plan.tag ? "md:mt-[44px]" : ""}`}
+										} ${!plan.tag ? "md:mt-[44px]" : ""}`}
 								>
 									{/* Gloss Reflection */}
 									<div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none" />
@@ -208,11 +207,10 @@ export default function PricingPage() {
 
 										<Link
 											href={plan.link}
-											className={`w-full py-5 rounded-3xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 mt-auto text-center block ${
-												plan.highlight
+											className={`w-full py-5 rounded-3xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 mt-auto text-center block ${plan.highlight
 													? "bg-[#1A0B5E] text-white hover:bg-[#2A1B7E] shadow-[#1A0B5E]/30 border-2 border-transparent"
 													: "bg-[#1A0B5E]/5 border-2 border-[#1A0B5E] text-[#1A0B5E] hover:bg-[#1A0B5E]/10"
-											}`}
+												}`}
 										>
 											{plan.buttonText}
 										</Link>
