@@ -36,7 +36,7 @@ export default function PricingPage() {
 			originalPrice: "$80.000 / mes",
 			price: "$39.999 por mes",
 			includes: "Hasta 150 productos optimizados por mes",
-			note: "1 crédito = 1 producto optimizado y activo • 10 mejoras por día",
+			note: "1 crédito = 1 producto optimizado y activo • 10 mejoras por día máximo",
 			buttonText: "Suscribirme ahora",
 			link: "https://app.geomodi.ai/signup",
 			highlight: true,
@@ -130,8 +130,8 @@ export default function PricingPage() {
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
 									className={`group relative flex flex-col rounded-[2.5rem] overflow-hidden shadow-2xl transition-all hover:translate-y-[-8px] backdrop-blur-xl border border-white/40 ${plan.highlight
-											? "bg-[#E6E6FA] ring-1 ring-[#1A0B5E]/10 z-20 shadow-violet-200/50"
-											: "bg-[#E6E6FA]/40 hover:bg-[#E6E6FA]/60 z-10"
+										? "bg-[#E6E6FA] ring-1 ring-[#1A0B5E]/10 z-20 shadow-violet-200/50"
+										: "bg-[#E6E6FA]/40 hover:bg-[#E6E6FA]/60 z-10"
 										} ${!plan.tag ? "md:mt-[44px]" : ""}`}
 								>
 									{/* Gloss Reflection */}
@@ -182,7 +182,12 @@ export default function PricingPage() {
 												</p>
 												{plan.note ? (
 													<p className="text-xs text-[#1A0B5E]/70 mt-1 italic leading-tight font-space">
-														{plan.note}
+														{plan.note.split(' • ').map((line, i) => (
+															<React.Fragment key={i}>
+																{line}
+																{i < plan.note.split(' • ').length - 1 && <br />}
+															</React.Fragment>
+														))}
 													</p>
 												) : (
 													<div className="h-[16px]" />
@@ -208,8 +213,8 @@ export default function PricingPage() {
 										<Link
 											href={plan.link}
 											className={`w-full py-5 rounded-3xl font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95 mt-auto text-center block ${plan.highlight
-													? "bg-[#1A0B5E] text-white hover:bg-[#2A1B7E] shadow-[#1A0B5E]/30 border-2 border-transparent"
-													: "bg-[#1A0B5E]/5 border-2 border-[#1A0B5E] text-[#1A0B5E] hover:bg-[#1A0B5E]/10"
+												? "bg-[#1A0B5E] text-white hover:bg-[#2A1B7E] shadow-[#1A0B5E]/30 border-2 border-transparent"
+												: "bg-[#1A0B5E]/5 border-2 border-[#1A0B5E] text-[#1A0B5E] hover:bg-[#1A0B5E]/10"
 												}`}
 										>
 											{plan.buttonText}
