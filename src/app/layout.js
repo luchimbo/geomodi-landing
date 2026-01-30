@@ -47,10 +47,10 @@ export const metadata = {
 		siteName: "GeoModi",
 		images: [
 			{
-				url: "/logo_high_res.png",
+				url: "/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "GeoModi - IA Generativa para Marcas",
+				alt: "GeoModi - Mapping the Future",
 			},
 		],
 		locale: "es_AR",
@@ -61,7 +61,7 @@ export const metadata = {
 		title: "GeoModi - IA Generativa para Marcas",
 		description:
 			"¿Tu marca está preparada para 2026? Optimizá tu catálogo para buscadores de IA.",
-		images: ["/logo_high_res.png"],
+		images: ["/og-image.png"],
 	},
 	icons: {
 		icon: "/icon.png",
