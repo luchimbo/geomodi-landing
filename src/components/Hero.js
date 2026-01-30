@@ -76,7 +76,7 @@ export default function Hero({ stagger, elegantFade }) {
 	};
 
 	return (
-		<section className="min-h-screen flex flex-col items-center justify-center px-4 relative">
+		<section className="min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative">
 			<motion.div
 				variants={stagger}
 				initial="hidden"
