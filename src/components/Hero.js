@@ -41,7 +41,7 @@ export default function Hero({ stagger, elegantFade }) {
 		"/assets/prelaunch/shopify.png",
 		"/assets/prelaunch/wix.png",
 		"/assets/prelaunch/woo-commerce.png",
-		"/assets/prelaunch/mercado-libre.png",
+		"/assets/prelaunch/prestashop.png",
 		"/assets/prelaunch/empretienda.png",
 	];
 
@@ -50,7 +50,7 @@ export default function Hero({ stagger, elegantFade }) {
 		"Shopify",
 		"Wix",
 		"WooCommerce",
-		"Mercado Libre",
+		"PrestaShop",
 		"Empretienda",
 	];
 
