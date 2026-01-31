@@ -38,7 +38,7 @@ export default function VideoSection({ reduce }) {
                             </div>
                         ) : (
                             <iframe
-                                src="https://www.youtube.com/embed/sc_DZoFIO5Y?autoplay=1&rel=0&modestbranding=1"
+                                src="https://www.youtube.com/embed/DrbiO4X5Lu4?autoplay=1&rel=0&modestbranding=1"
                                 title="GEOModi Video"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
