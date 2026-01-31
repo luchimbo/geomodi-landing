@@ -118,10 +118,10 @@ export default function Hero({ stagger, elegantFade }) {
 					className="mx-auto flex flex-col items-center text-center text-[28px] font-bold leading-tight text-white/95 md:text-[56px] font-space"
 				>
 					<motion.span variants={elegantFade} className="md:whitespace-nowrap">
-						El 50% del tráfico de búsqueda tradicional
+						2 de cada 3 busquedas en Google serán
 					</motion.span>
 					<motion.span variants={elegantFade} className="md:whitespace-nowrap">
-						será reemplazado por IA generativa en este año.
+						reemplazadas por inteligencia artificial en este año.
 					</motion.span>
 				</motion.h1>
 				<motion.p
@@ -129,7 +129,7 @@ export default function Hero({ stagger, elegantFade }) {
 					transition={{ delay: 0.2 }}
 					className="mt-8 text-[18px] md:text-[36px] font-light text-white/65 font-space"
 				>
-					¿Tu marca está preparada?
+					¡No te quedes afuera!
 				</motion.p>
 
 				{/* URL Input CTA */}
