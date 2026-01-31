@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Hero({ stagger, elegantFade }) {
 	const router = useRouter();
@@ -11,6 +11,25 @@ export default function Hero({ stagger, elegantFade }) {
 	const [selectedStore, setSelectedStore] = useState(null);
 	const [isChecking, setIsChecking] = useState(false);
 	const [error, setError] = useState("");
+	const [showStoreSelectors, setShowStoreSelectors] = useState(false);
+	const [isDebouncing, setIsDebouncing] = useState(false);
+
+	// Debounce logic for store selectors visibility
+	useEffect(() => {
+		if (!storeUrl.trim()) {
+			setShowStoreSelectors(false);
+			setIsDebouncing(false);
+			return;
+		}
+
+		setIsDebouncing(true);
+		const timer = setTimeout(() => {
+			setShowStoreSelectors(true);
+			setIsDebouncing(false);
+		}, 2000);
+
+		return () => clearTimeout(timer);
+	}, [storeUrl]);
 
 	// Switch between prod and dev
 	const baseUrl = "https://app.geomodi.ai";
@@ -86,7 +105,7 @@ export default function Hero({ stagger, elegantFade }) {
 	};
 
 	return (
-		<section className="min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative">
+		<section className={`min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative ${showStoreSelectors ? "mt-0" : "mt-[-125px]"} md:mt-0`}>
 			<motion.div
 				variants={stagger}
 				initial="hidden"
@@ -96,7 +115,7 @@ export default function Hero({ stagger, elegantFade }) {
 			>
 				<motion.h1
 					variants={stagger}
-					className="mx-auto flex flex-col items-center text-center text-[32px] font-bold leading-tight text-white/95 md:text-[56px] font-space"
+					className="mx-auto flex flex-col items-center text-center text-[28px] font-bold leading-tight text-white/95 md:text-[56px] font-space"
 				>
 					<motion.span variants={elegantFade} className="md:whitespace-nowrap">
 						El 50% del tráfico de búsqueda tradicional
@@ -108,7 +127,7 @@ export default function Hero({ stagger, elegantFade }) {
 				<motion.p
 					variants={elegantFade}
 					transition={{ delay: 0.2 }}
-					className="mt-8 text-[22px] md:text-[36px] font-light text-white/65 font-space"
+					className="mt-8 text-[18px] md:text-[36px] font-light text-white/65 font-space"
 				>
 					¿Tu marca está preparada?
 				</motion.p>
@@ -118,11 +137,14 @@ export default function Hero({ stagger, elegantFade }) {
 					variants={elegantFade}
 					transition={{ delay: 0.3 }}
 					onSubmit={handleAnalyzeSubmit}
-					className="mt-14 flex flex-col items-center justify-center gap-8 w-full"
+					className="mt-8 flex flex-col items-center justify-center gap-8 w-full"
 				>
 					<div className="relative w-full max-w-2xl">
-						<label htmlFor="store-url-input" className="sr-only">
-							URL de tu tienda online
+						<label
+							htmlFor="store-url-input"
+							className="block text-white/65 text-center mb-2 md:mb-6 font-space text-[14px]"
+						>
+							Ingresa URL de tu tienda
 						</label>
 						<input
 							id="store-url-input"
@@ -132,18 +154,27 @@ export default function Hero({ stagger, elegantFade }) {
 								setStoreUrl(e.target.value);
 								setError("");
 							}}
-							placeholder="Ingresá URL de tu tienda"
+							placeholder="www.mitienda.com"
 							aria-label="URL de tu tienda online"
 							aria-describedby={error ? "url-error-message" : undefined}
 							aria-invalid={error ? "true" : "false"}
-							className="w-full rounded-[2rem] border border-emerald-400/40 bg-white/5 px-8 py-5 text-emerald-50 text-xl placeholder-emerald-400/40 focus:border-emerald-300/80 focus:outline-none focus:ring-4 focus:ring-emerald-400/10 transition-all font-space backdrop-blur-sm"
+							className="w-full rounded-[2rem] text-center md:text-left border border-emerald-400/40 bg-white/5 px-8 pt-3 pb-3 md:pt-5 md:pb-5 pr-12
+							 text-emerald-50 text-[18px] md:text-xl placeholder-emerald-400/40 focus:border-emerald-300/80 focus:outline-none focus:ring-4 focus:ring-emerald-400/10 transition-all font-space backdrop-blur-sm"
 						/>
+						{isDebouncing && (
+							<div className="absolute right-6 top-1/2 mt-3 md:mt-4 -translate-y-1/2">
+								<svg className="animate-spin h-5 w-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+									<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+									<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+								</svg>
+							</div>
+						)}
 					</div>
 
 					{/* Store Selectors */}
-					<div className="w-full max-w-2xl space-y-8">
+					<div className={`w-full max-w-2xl space-y-8 ${showStoreSelectors ? "block" : "hidden md:block"}`}>
 						<div className="text-center">
-							<p className="text-white/60 text-lg font-space italic">
+							<p className="text-white/60 text-lg font-space italic text-[16px]">
 								Selecciona tu plataforma de E-commerce
 							</p>
 						</div>
@@ -204,7 +235,7 @@ export default function Hero({ stagger, elegantFade }) {
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
 								className={`
-                                    rounded-full px-12 py-5 text-xl font-bold shadow-xl transition-all duration-300 font-space
+                                    rounded-full px-12 py-3 md:py-5 text-[18px] md:text-xl font-bold shadow-xl transition-all duration-300 font-space
                                     ${storeUrl.trim() &&
 										selectedStore !== null &&
 										!isChecking
@@ -214,7 +245,7 @@ export default function Hero({ stagger, elegantFade }) {
                                 `}
 								disabled={!storeUrl.trim() || selectedStore === null || isChecking}
 							>
-								{isChecking ? "Verificando..." : "Optimizar mi Producto Estrella GRATIS"}
+								{isChecking ? "Verificando..." : "Analizar mi tienda"}
 							</motion.button>
 						</div>
 					</div>
