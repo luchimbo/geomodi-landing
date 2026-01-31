@@ -22,6 +22,7 @@ export default function PricingPage() {
 		"@type": "Product",
 		"name": "GeoModi PRO",
 		"description": "Optimización GEO para tiendas online. Hasta 150 productos optimizados por mes para aparecer en ChatGPT, Gemini y buscadores de IA.",
+		"image": "https://geomodi.ai/logo_high_res.png",
 		"brand": {
 			"@type": "Brand",
 			"name": "GeoModi"
