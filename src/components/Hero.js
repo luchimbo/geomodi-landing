@@ -121,7 +121,7 @@ export default function Hero({ stagger, elegantFade }) {
 						El 50% del tráfico de búsqueda tradicional
 					</motion.span>
 					<motion.span variants={elegantFade} className="md:whitespace-nowrap">
-						será reemplazado por IA generativa en 2026.
+						será reemplazado por IA generativa en este año.
 					</motion.span>
 				</motion.h1>
 				<motion.p

@@ -99,7 +99,7 @@ export default function SolutionsSection({ stagger, cardIn }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.5 }}
                     transition={{ duration: 0.8 }}
-                    className="text-center md:text-left text-[36px] md:text-[48px] font-bold font-space leading-tight mb-12 md:mb-16 md:ml-[5%]"
+                    className="text-center md:text-left text-[28px] md:text-[48px] font-bold font-space leading-tight mb-12 md:mb-16 md:ml-[5%]"
                 >
                     <span className="text-emerald-300">Optimiza</span> <span className="text-white">la forma en que la IA ve tu marca</span>
                 </motion.h2>
