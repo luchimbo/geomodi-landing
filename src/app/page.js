@@ -77,21 +77,38 @@ export default function GeoModiLandingReplica() {
 					<script
 						type="application/ld+json"
 						dangerouslySetInnerHTML={{
-							__html: JSON.stringify({
-								"@context": "https://schema.org",
-								"@type": "Organization",
-								name: "GeoModi",
-								url: "https://geomodi.ai",
-								logo: "https://geomodi.ai/logo_high_res.png",
-								description:
-									"Líderes en Generative Engine Optimization (GEO). Optimizamos tu TiendaNube para ChatGPT y buscadores de IA.",
-								address: {
-									"@type": "PostalAddress",
-									addressCountry: "AR",
+							__html: JSON.stringify([
+								{
+									"@context": "https://schema.org",
+									"@type": "Organization",
+									name: "GeoModi",
+									url: "https://geomodi.ai",
+									logo: "https://geomodi.ai/logo_high_res.png",
+									description:
+										"Líderes en Generative Engine Optimization (GEO). Optimizamos tu TiendaNube para ChatGPT y buscadores de IA.",
+									address: {
+										"@type": "PostalAddress",
+										addressCountry: "AR",
+									},
 								},
-							}),
+								{
+									"@context": "https://schema.org",
+									"@type": "WebSite",
+									"name": "GeoModi",
+									"url": "https://geomodi.ai",
+									"description": "Optimiza la visibilidad de tu marca en la era de la IA generativa. Transforma tu catálogo de TiendaNube para que ChatGPT, Gemini y Claude te recomienden.",
+									"publisher": {
+										"@type": "Organization",
+										"name": "GeoModi",
+										"logo": {
+											"@type": "ImageObject",
+											"url": "https://geomodi.ai/logo_high_res.png"
+										}
+									}
+								}
+							]),
 						}}
-					/>
+					></script>
 					<Navbar
 						isMenuOpen={isMenuOpen}
 						setIsMenuOpen={setIsMenuOpen}

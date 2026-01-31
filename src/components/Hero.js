@@ -26,6 +26,16 @@ export default function Hero({ stagger, elegantFade }) {
 		"/assets/prelaunch/empretienda.png",
 	];
 
+	const logoNames = [
+		"TiendaNube",
+		"Shopify",
+		"Wix",
+		"WooCommerce",
+		"Mercado Libre",
+		"Empretienda",
+	];
+
+
 	const handleAnalyzeSubmit = async (e) => {
 		e.preventDefault();
 		const trimmedUrl = storeUrl.trim();
@@ -111,7 +121,11 @@ export default function Hero({ stagger, elegantFade }) {
 					className="mt-14 flex flex-col items-center justify-center gap-8 w-full"
 				>
 					<div className="relative w-full max-w-2xl">
+						<label htmlFor="store-url-input" className="sr-only">
+							URL de tu tienda online
+						</label>
 						<input
+							id="store-url-input"
 							type="text"
 							value={storeUrl}
 							onChange={(e) => {
@@ -119,6 +133,9 @@ export default function Hero({ stagger, elegantFade }) {
 								setError("");
 							}}
 							placeholder="Ingresá URL de tu tienda"
+							aria-label="URL de tu tienda online"
+							aria-describedby={error ? "url-error-message" : undefined}
+							aria-invalid={error ? "true" : "false"}
 							className="w-full rounded-[2rem] border border-emerald-400/40 bg-white/5 px-8 py-5 text-emerald-50 text-xl placeholder-emerald-400/40 focus:border-emerald-300/80 focus:outline-none focus:ring-4 focus:ring-emerald-400/10 transition-all font-space backdrop-blur-sm"
 						/>
 					</div>
@@ -139,6 +156,8 @@ export default function Hero({ stagger, elegantFade }) {
 										setSelectedStore(i);
 										setError("");
 									}}
+									aria-label={`Seleccionar plataforma ${logoNames[i]}`}
+									aria-pressed={selectedStore === i}
 									className={`
                                         relative group flex items-center justify-center p-4 rounded-2xl border transition-all duration-300 h-20
                                         ${selectedStore === i
@@ -150,7 +169,7 @@ export default function Hero({ stagger, elegantFade }) {
 									<div className="relative w-full h-full">
 										<Image
 											src={src}
-											alt={`Store ${i + 1}`}
+											alt={`Logo de ${logoNames[i]} - Plataforma de e-commerce`}
 											fill
 											className={`object-contain transition-all duration-300 ${selectedStore === i ? "opacity-100" : "opacity-80 group-hover:opacity-100"}`}
 										/>
@@ -169,6 +188,9 @@ export default function Hero({ stagger, elegantFade }) {
 
 							{error && (
 								<motion.div
+									id="url-error-message"
+									role="alert"
+									aria-live="polite"
 									initial={{ opacity: 0, y: -10 }}
 									animate={{ opacity: 1, y: 0 }}
 									className="text-red-400 text-sm text-center px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 max-w-md"

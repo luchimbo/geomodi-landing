@@ -10,10 +10,35 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function PricingPage() {
 	const reduce = useReducedMotion();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	// Product Schema for SEO
+	const productSchema = {
+		"@context": "https://schema.org",
+		"@type": "Product",
+		"name": "GeoModi PRO",
+		"description": "Optimización GEO para tiendas online. Hasta 150 productos optimizados por mes para aparecer en ChatGPT, Gemini y buscadores de IA.",
+		"brand": {
+			"@type": "Brand",
+			"name": "GeoModi"
+		},
+		"offers": {
+			"@type": "Offer",
+			"price": "39999",
+			"priceCurrency": "ARS",
+			"availability": "https://schema.org/InStock",
+			"url": "https://geomodi.ai/pricing",
+			"priceValidUntil": "2026-12-31",
+			"seller": {
+				"@type": "Organization",
+				"name": "GeoModi"
+			}
+		}
+	};
 
 	const plans = [
 		{
@@ -49,6 +74,12 @@ export default function PricingPage() {
 	return (
 		<LazyMotion features={domMax}>
 			<div className="min-h-screen bg-gradient-to-br from-[#F5F3FF] via-[#F0FDF4] to-[#F5F3FF] text-[#1A0B5E] font-sans selection:bg-emerald-200 selection:text-emerald-900 overflow-x-hidden">
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(productSchema)
+					}}
+				/>
 				<Navbar
 					isMenuOpen={isMenuOpen}
 					setIsMenuOpen={setIsMenuOpen}
@@ -104,6 +135,13 @@ export default function PricingPage() {
 					</div>
 
 					<div className="relative z-10 max-w-5xl mx-auto text-center">
+						<Breadcrumbs
+							items={[
+								{ name: "Inicio", path: "/" },
+								{ name: "Precios", path: "/pricing" }
+							]}
+							theme="light"
+						/>
 						<motion.h1
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}

@@ -1,6 +1,9 @@
 export const metadata = {
     title: "Términos y Condiciones - GeoModi",
     description: "Términos de servicio y condiciones de uso de GeoModi. Conocé nuestras políticas de suscripción, cancelación y uso del servicio de optimización para IA.",
+    alternates: {
+        canonical: '/terminos',
+    },
     openGraph: {
         title: "Términos y Condiciones - GeoModi",
         description: "Lee nuestros términos de servicio y condiciones de uso.",

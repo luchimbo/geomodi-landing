@@ -67,6 +67,7 @@ export const metadata = {
 		icon: "/icon.png",
 		apple: "/icon.png",
 	},
+	manifest: "/manifest.json",
 	category: "technology",
 };
 
@@ -77,6 +78,13 @@ export default function RootLayout({ children }) {
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
 				>
+					{/* Skip to main content - Accessibility */}
+					<a
+						href="#main-content"
+						className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-3 focus:bg-emerald-400 focus:text-black focus:font-bold focus:rounded-lg focus:shadow-lg"
+					>
+						Saltar al contenido principal
+					</a>
 					<Suspense fallback={null}>
 						<PostHogPageView />
 					</Suspense>

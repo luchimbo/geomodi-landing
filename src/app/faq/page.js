@@ -18,6 +18,7 @@ import {
 import React, { useState } from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const faqData = [
 	{
@@ -198,6 +199,13 @@ export default function FAQPage() {
 
 				<main className="relative z-0 pt-32 pb-24 px-4">
 					<div className="max-w-4xl mx-auto">
+						<Breadcrumbs
+							items={[
+								{ name: "Inicio", path: "/" },
+								{ name: "FAQ", path: "/faq" }
+							]}
+							theme="dark"
+						/>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}

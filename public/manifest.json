@@ -1,0 +1,30 @@
+{
+    "name": "GeoModi - Optimización GEO para tu marca",
+    "short_name": "GeoModi",
+    "description": "Optimiza la visibilidad de tu marca en la era de la IA generativa. Transforma tu catálogo para que ChatGPT, Gemini y Claude te recomienden.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#34D399",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/logo_high_res.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "business",
+        "productivity",
+        "marketing"
+    ],
+    "lang": "es-AR"
+}
