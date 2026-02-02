@@ -105,7 +105,7 @@ export default function Hero({ stagger, elegantFade }) {
 	};
 
 	return (
-		<section className={`min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative ${showStoreSelectors ? "mt-0" : "mt-[-125px]"} md:mt-0`}>
+		<section className={`min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative ${showStoreSelectors ? "mt-0" : "pt-[8rem]"} md:pt-[110px]`}>
 			<motion.div
 				variants={stagger}
 				initial="hidden"
