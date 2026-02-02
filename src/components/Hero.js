@@ -105,7 +105,7 @@ export default function Hero({ stagger, elegantFade }) {
 	};
 
 	return (
-		<section className={`min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative ${showStoreSelectors ? "mt-0" : "pt-[8rem]"} md:pt-[110px]`}>
+		<section className={`min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative ${showStoreSelectors ? "mt-0 md:pt-[110px]" : "pt-[8rem] md:pt-[160px]"}`}>
 			<motion.div
 				variants={stagger}
 				initial="hidden"
@@ -172,7 +172,7 @@ export default function Hero({ stagger, elegantFade }) {
 					</div>
 
 					{/* Store Selectors */}
-					<div className={`w-full max-w-2xl space-y-8 ${showStoreSelectors ? "block" : "hidden md:block"}`}>
+					<div className={`w-full max-w-2xl space-y-8 ${showStoreSelectors ? "block" : "hidden"}`}>
 						<div className="text-center">
 							<p className="text-white/60 text-lg font-space italic text-[16px]">
 								Selecciona tu plataforma de E-commerce
