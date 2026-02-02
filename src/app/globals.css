@@ -30,3 +30,8 @@ body {
   font-family: var(--font-space-grotesk), sans-serif;
   font-optical-sizing: auto;
 }
+
+* {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
