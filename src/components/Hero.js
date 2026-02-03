@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Hero({ stagger, elegantFade }) {
 	const router = useRouter();
@@ -54,7 +54,6 @@ export default function Hero({ stagger, elegantFade }) {
 		"Empretienda",
 	];
 
-
 	const handleAnalyzeSubmit = async (e) => {
 		e.preventDefault();
 		const trimmedUrl = storeUrl.trim();
@@ -72,24 +71,41 @@ export default function Hero({ stagger, elegantFade }) {
 
 		setError("");
 
-		if (selectedStore === 0) {
-			// Check if it's actually a TiendaNube store
+		if (selectedStore === 0 || selectedStore === 3) {
+			// Check if it's actually a TiendaNube or WooCommerce store
 			setIsChecking(true);
 			try {
 				const response = await fetch(
-					`${apiBaseUrl}/api/check-tiendanube?url=${encodeURIComponent(trimmedUrl)}`,
+					`${apiBaseUrl}/api/detect-platform?url=${encodeURIComponent(trimmedUrl)}`,
 				);
 				const data = await response.json();
 
-				if (!response.ok || !data.isTiendaNube) {
-					setError(
-						"Esta URL no corresponde a una tienda de TiendaNube. Por favor verifica la URL o selecciona otra plataforma.",
-					);
+				// Check if API detected a supported platform (tiendanube or woocommerce)
+				const supportedPlatforms = ["tiendanube", "woocommerce"];
+
+				if (!response.ok) {
+					setError("Hubo un problema. Por favor verifica la URL!");
 					setIsChecking(false);
 					return;
 				}
 
-				// If it's TiendaNube, proceed with redirect
+				// If platform is not supported, redirect to prelaunch-soon like other platforms
+				if (!supportedPlatforms.includes(data.platform)) {
+					const logoSrc = logos[selectedStore];
+					const logoBase64 = btoa(logoSrc);
+					const pageBase64 = btoa(trimmedUrl);
+					router.push(`/prelaunch-soon?logo=${logoBase64}&page=${pageBase64}`);
+					return;
+				}
+
+				// Auto-select the detected platform for the user
+				if (data.platform === 'tiendanube') {
+					setSelectedStore(0);
+				} else if (data.platform === 'woocommerce') {
+					setSelectedStore(3);
+				}
+
+				// If it's a supported platform, proceed with redirect to app
 				const encodedUrl = encodeURIComponent(trimmedUrl);
 				window.location.href = `${baseUrl}?pending_url=${encodedUrl}`;
 			} catch (err) {
@@ -105,7 +121,9 @@ export default function Hero({ stagger, elegantFade }) {
 	};
 
 	return (
-		<section className={`min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative ${showStoreSelectors ? "mt-0 md:pt-[110px]" : "pt-[8rem] md:pt-[160px]"}`}>
+		<section
+			className={`min-h-screen flex flex-col items-center justify-center pt-28 md:pt-0 px-4 relative ${showStoreSelectors ? "mt-0 md:pt-[110px]" : "pt-[8rem] md:pt-[160px]"}`}
+		>
 			<motion.div
 				variants={stagger}
 				initial="hidden"
@@ -163,16 +181,34 @@ export default function Hero({ stagger, elegantFade }) {
 						/>
 						{isDebouncing && (
 							<div className="absolute right-6 top-1/2 mt-3 md:mt-4 -translate-y-1/2">
-								<svg className="animate-spin h-5 w-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-									<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-									<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+								<svg
+									className="animate-spin h-5 w-5 text-emerald-400"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+								>
+									<circle
+										className="opacity-25"
+										cx="12"
+										cy="12"
+										r="10"
+										stroke="currentColor"
+										strokeWidth="4"
+									></circle>
+									<path
+										className="opacity-75"
+										fill="currentColor"
+										d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+									></path>
 								</svg>
 							</div>
 						)}
 					</div>
 
 					{/* Store Selectors */}
-					<div className={`w-full max-w-2xl space-y-8 ${showStoreSelectors ? "block" : "hidden"}`}>
+					<div
+						className={`w-full max-w-2xl space-y-8 ${showStoreSelectors ? "block" : "hidden"}`}
+					>
 						<div className="text-center">
 							<p className="text-white/60 text-lg font-space italic text-[16px]">
 								Selecciona tu plataforma de E-commerce
@@ -191,10 +227,11 @@ export default function Hero({ stagger, elegantFade }) {
 									aria-pressed={selectedStore === i}
 									className={`
                                         relative group flex items-center justify-center p-4 rounded-2xl border transition-all duration-300 h-20
-                                        ${selectedStore === i
-											? "bg-white border-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.4)] scale-105 z-10"
-											: "bg-white/90 border-transparent hover:bg-white hover:scale-105 opacity-90 hover:opacity-100"
-										}
+                                        ${
+																					selectedStore === i
+																						? "bg-white border-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.4)] scale-105 z-10"
+																						: "bg-white/90 border-transparent hover:bg-white hover:scale-105 opacity-90 hover:opacity-100"
+																				}
                                     `}
 								>
 									<div className="relative w-full h-full">
@@ -236,14 +273,17 @@ export default function Hero({ stagger, elegantFade }) {
 								whileTap={{ scale: 0.95 }}
 								className={`
                                     rounded-full px-12 py-3 md:py-5 text-[18px] md:text-xl font-bold shadow-xl transition-all duration-300 font-space
-                                    ${storeUrl.trim() &&
-										selectedStore !== null &&
-										!isChecking
-										? "bg-emerald-400 text-black shadow-emerald-400/20 hover:bg-emerald-300 cursor-pointer"
-										: "bg-white/10 text-white/30 cursor-not-allowed border border-white/5"
-									}
+                                    ${
+																			storeUrl.trim() &&
+																			selectedStore !== null &&
+																			!isChecking
+																				? "bg-emerald-400 text-black shadow-emerald-400/20 hover:bg-emerald-300 cursor-pointer"
+																				: "bg-white/10 text-white/30 cursor-not-allowed border border-white/5"
+																		}
                                 `}
-								disabled={!storeUrl.trim() || selectedStore === null || isChecking}
+								disabled={
+									!storeUrl.trim() || selectedStore === null || isChecking
+								}
 							>
 								{isChecking ? "Verificando..." : "Analizar mi tienda"}
 							</motion.button>
