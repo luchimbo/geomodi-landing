@@ -50,7 +50,7 @@ export default function CTASection() {
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: false, amount: 0.4 }}
+                viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 1.2, ease }}
                 className="w-full bg-[#3110C3] py-24 md:py-32 relative overflow-hidden border-y border-white/10 shadow-[0_0_80px_rgba(49,16,195,0.3)]"
             >
@@ -92,7 +92,7 @@ export default function CTASection() {
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 1.2, delay: 0.1 }}
                 className="mt-12 md:mt-32 w-full max-w-2xl px-6 md:px-8 flex justify-center"
             >

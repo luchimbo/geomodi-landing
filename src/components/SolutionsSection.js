@@ -97,7 +97,7 @@ export default function SolutionsSection({ stagger, cardIn }) {
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.5 }}
+                    viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.8 }}
                     className="text-center md:text-left text-[28px] md:text-[48px] font-bold font-space leading-tight mb-12 md:mb-16 md:ml-[5%]"
                 >
@@ -108,7 +108,7 @@ export default function SolutionsSection({ stagger, cardIn }) {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     className="mb-24 md:mb-32 px-4 md:px-8"
                 >
@@ -148,7 +148,7 @@ export default function SolutionsSection({ stagger, cardIn }) {
                         variants={stagger}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: false, amount: 0.1 }}
+                        viewport={{ once: true, amount: 0.1 }}
                     >
                         <motion.div
                             variants={cardIn}
@@ -184,7 +184,7 @@ export default function SolutionsSection({ stagger, cardIn }) {
                         variants={stagger}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: false, amount: 0.1 }}
+                        viewport={{ once: true, amount: 0.1 }}
                     >
                         <motion.div
                             variants={cardIn}

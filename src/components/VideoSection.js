@@ -12,7 +12,7 @@ export default function VideoSection({ reduce }) {
             <motion.div
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.8, ease }}
                 className="w-full max-w-5xl"
             >

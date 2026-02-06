@@ -128,7 +128,7 @@ export default function Hero({ stagger, elegantFade }) {
 				variants={stagger}
 				initial="hidden"
 				whileInView="show"
-				viewport={{ once: false, amount: 0.3 }}
+				viewport={{ once: true, amount: 0.3 }}
 				className="mx-auto max-w-4xl text-center"
 			>
 				<motion.h1
@@ -227,11 +227,10 @@ export default function Hero({ stagger, elegantFade }) {
 									aria-pressed={selectedStore === i}
 									className={`
                                         relative group flex items-center justify-center p-4 rounded-2xl border transition-all duration-300 h-20
-                                        ${
-																					selectedStore === i
-																						? "bg-white border-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.4)] scale-105 z-10"
-																						: "bg-white/90 border-transparent hover:bg-white hover:scale-105 opacity-90 hover:opacity-100"
-																				}
+                                        ${selectedStore === i
+											? "bg-white border-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.4)] scale-105 z-10"
+											: "bg-white/90 border-transparent hover:bg-white hover:scale-105 opacity-90 hover:opacity-100"
+										}
                                     `}
 								>
 									<div className="relative w-full h-full">
@@ -273,13 +272,12 @@ export default function Hero({ stagger, elegantFade }) {
 								whileTap={{ scale: 0.95 }}
 								className={`
                                     rounded-full px-12 py-3 md:py-5 text-[18px] md:text-xl font-bold shadow-xl transition-all duration-300 font-space
-                                    ${
-																			storeUrl.trim() &&
-																			selectedStore !== null &&
-																			!isChecking
-																				? "bg-emerald-400 text-black shadow-emerald-400/20 hover:bg-emerald-300 cursor-pointer"
-																				: "bg-white/10 text-white/30 cursor-not-allowed border border-white/5"
-																		}
+                                    ${storeUrl.trim() &&
+										selectedStore !== null &&
+										!isChecking
+										? "bg-emerald-400 text-black shadow-emerald-400/20 hover:bg-emerald-300 cursor-pointer"
+										: "bg-white/10 text-white/30 cursor-not-allowed border border-white/5"
+									}
                                 `}
 								disabled={
 									!storeUrl.trim() || selectedStore === null || isChecking
