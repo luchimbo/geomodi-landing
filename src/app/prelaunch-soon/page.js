@@ -114,7 +114,7 @@ function PrelaunchContent() {
                     <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-black shadow-[0_0_100px_rgba(34,197,94,0.1)]">
                         <div className="aspect-video w-full">
                             <iframe
-                                src="https://www.youtube.com/embed/DrbiO4X5Lu4?autoplay=1&mute=0&controls=1&loop=1&playlist=DrbiO4X5Lu4&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1"
+                                src="https://www.youtube.com/embed/DrbiO4X5Lu4?autoplay=1&mute=1&controls=1&loop=1&playlist=DrbiO4X5Lu4&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1"
                                 title="GeoModi Preview"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
