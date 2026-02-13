@@ -7,7 +7,6 @@ import { usePostHog } from "posthog-js/react"
 
 const navLinks = [
   { label: "Funcionalidades", href: "#funcionalidades" },
-  { label: "Precios", href: "#pricing" },
   { label: "Preguntas", href: "#faq" },
 ]
 
