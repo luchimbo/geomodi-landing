@@ -2,8 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import { usePostHog } from "posthog-js/react";
 
 export default function CTASection() {
+    const posthog = usePostHog();
     const [email, setEmail] = React.useState("");
     const [isSubmitted, setIsSubmitted] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
@@ -28,6 +30,7 @@ export default function CTASection() {
                 });
 
                 // Since 'no-cors' doesn't allow reading the response, we assume success if no exception is thrown
+                posthog?.capture("email_submitted", { source: "landing_cta" });
                 setIsSubmitted(true);
                 toast.success("¡Registro exitoso! Pronto nos contactaremos.");
                 e.target.reset();

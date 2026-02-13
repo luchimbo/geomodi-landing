@@ -3,8 +3,10 @@
 import { Button } from "@/components/landing-b/ui/button"
 import { GridPattern } from "@/components/landing-b/ui/grid-pattern"
 import * as motion from "motion/react-client"
+import { usePostHog } from "posthog-js/react"
 
 export function Hero() {
+  const posthog = usePostHog()
   return (
     <section className="relative min-h-[calc(100vh-4rem)] overflow-hidden flex flex-col">
       {/* Background Effects */}
@@ -42,8 +44,16 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.3 }}
           >
-            <Button size="lg">
-              Analiza tu tienda gratis
+            <Button
+              size="lg"
+              asChild
+            >
+              <a
+                href="https://app.geomodi.ai"
+                onClick={() => posthog?.capture("cta_click", { label: "Analiza tu tienda gratis", source: "hero" })}
+              >
+                Analiza tu tienda gratis
+              </a>
             </Button>
             <div className="text-sm text-muted-foreground/70">
               <p className="md:hidden">Sin tarjeta de crédito. Sin compromisos</p>

@@ -12,7 +12,7 @@ import { Footer } from "@/components/landing-b/footer"
 
 export default function PageB() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="landing-b min-h-screen bg-white text-gray-900 [color-scheme:light]">
       <Navbar />
       <main>
         <Hero />

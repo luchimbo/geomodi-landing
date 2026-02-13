@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import "./globals-b.css";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { Toaster } from "sonner";

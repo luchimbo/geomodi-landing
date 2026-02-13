@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/landing-b/ui/button"
+import { usePostHog } from "posthog-js/react"
 
 const navLinks = [
   { label: "Funcionalidades", href: "#funcionalidades" },
@@ -11,6 +12,7 @@ const navLinks = [
 ]
 
 export function Navbar() {
+  const posthog = usePostHog()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -49,8 +51,16 @@ export function Navbar() {
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-          <Button size="sm">
-            Comenzar gratis
+          <Button
+            size="sm"
+            asChild
+          >
+            <a
+              href="https://app.geomodi.ai"
+              onClick={() => posthog?.capture("navbar_cta_click", { label: "Comenzar gratis" })}
+            >
+              Comenzar gratis
+            </a>
           </Button>
         </div>
 
@@ -79,8 +89,17 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button size="sm" className="mt-2 w-full">
-            Comenzar gratis
+          <Button
+            size="sm"
+            className="mt-2 w-full"
+            asChild
+          >
+            <a
+              href="https://app.geomodi.ai"
+              onClick={() => posthog?.capture("navbar_cta_click", { label: "Comenzar gratis" })}
+            >
+              Comenzar gratis
+            </a>
           </Button>
         </div>
       )}

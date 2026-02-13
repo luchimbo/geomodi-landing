@@ -1,3 +1,5 @@
+"use client"
+
 import { Check } from "lucide-react"
 import { Button } from "@/components/landing-b/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/landing-b/ui/card"
@@ -5,6 +7,7 @@ import { Badge } from "@/components/landing-b/ui/badge"
 import { SectionWrapper } from "@/components/landing-b/section-wrapper"
 import { AnimatedSection } from "@/components/landing-b/animated-section"
 import { cn } from "@/lib/utils"
+import { usePostHog } from "posthog-js/react"
 
 const tiers = [
   {
@@ -17,6 +20,7 @@ const tiers = [
       "5 Productos optimizados",
     ],
     cta: "Comenzar gratis",
+    link: "https://app.geomodi.ai/",
     highlighted: false,
   },
   {
@@ -31,11 +35,13 @@ const tiers = [
       "Integración con Tienda Nube y WooCommerce",
     ],
     cta: "Empezar ahora",
+    link: "https://app.geomodi.ai/signup",
     highlighted: true,
   },
 ]
 
 export function Pricing() {
+  const posthog = usePostHog()
   return (
     <SectionWrapper id="pricing" className="scroll-mt-20">
       <div className="mb-12 text-center">
@@ -96,8 +102,14 @@ export function Pricing() {
                 <Button
                   className="w-full"
                   variant={tier.highlighted ? "default" : "outline"}
+                  asChild
                 >
-                  {tier.cta}
+                  <a
+                    href={tier.link}
+                    onClick={() => posthog?.capture("pricing_cta_click", { tier: tier.name, label: tier.cta })}
+                  >
+                    {tier.cta}
+                  </a>
                 </Button>
               </CardFooter>
             </Card>

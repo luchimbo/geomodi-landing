@@ -3,8 +3,10 @@ import React from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePostHog } from "posthog-js/react";
 
 export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dark" }) {
+    const posthog = usePostHog();
     const ease = [0.22, 1, 0.36, 1];
 
     const bgColor = theme === "dark" ? "bg-white/10" : "bg-[#1A0B5E]";
@@ -54,7 +56,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dar
                             </motion.button>
                         </a>
 
-                        <Link href="/pricing" className="hidden sm:block">
+                        <Link href="/pricing" className="hidden sm:block" onClick={() => posthog?.capture("navbar_cta_click", { label: "Comenzar ahora" })}>
                             <motion.button
                                 whileHover={reduce ? {} : { y: -1, scale: 1.01 }}
                                 whileTap={reduce ? {} : { scale: 0.99 }}
@@ -111,7 +113,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen, reduce, theme = "dar
                                             Entrar
                                         </button>
                                     </a>
-                                    <Link href="/pricing" onClick={() => setIsMenuOpen(false)}>
+                                    <Link href="/pricing" onClick={() => { posthog?.capture("navbar_cta_click", { label: "Comenzar ahora" }); setIsMenuOpen(false); }}>
                                         <button className="w-full rounded-2xl bg-emerald-300 py-4 font-bold text-black shadow-lg">
                                             Comenzar ahora
                                         </button>

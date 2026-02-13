@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/landing-b/ui/button"
 import { AnimatedSection } from "@/components/landing-b/animated-section"
+import { usePostHog } from "posthog-js/react"
 
 export function FinalCTA() {
+  const posthog = usePostHog()
   return (
     <section className="relative overflow-hidden bg-accent border-t border-b border-border">
       <div className="relative mx-auto max-w-6xl px-4 py-20 text-center">
@@ -15,8 +17,16 @@ export function FinalCTA() {
             Mientras tus competidores siguen optimizando para Google, vos podés estar un paso adelante. Optimizá para ChatGPT, Gemini y todas las IAs que están cambiando las reglas del juego.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
-            <Button size="lg">
-              Analizar mi tienda gratis
+            <Button
+              size="lg"
+              asChild
+            >
+              <a
+                href="https://app.geomodi.ai"
+                onClick={() => posthog?.capture("cta_click", { label: "Analizar mi tienda gratis", source: "final_cta" })}
+              >
+                Analizar mi tienda gratis
+              </a>
             </Button>
             <p className="text-sm text-muted-foreground/70">
               5 productos gratis. Sin tarjeta de crédito.

@@ -6,7 +6,10 @@ import {
 	useReducedMotion,
 } from "framer-motion";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { usePostHog } from "posthog-js/react";
+import { useSearchParams } from "next/navigation";
 import Hero from "@/components/Hero";
 // Components
 import Navbar from "@/components/Navbar";
@@ -30,7 +33,23 @@ const NewsletterModal = dynamic(() => import("@/components/NewsletterModal"), {
 	ssr: false,
 });
 
-export default function GeoModiLandingReplica() {
+const PageB = dynamic(() => import("@/app/page-b"), { ssr: false });
+
+const EXPERIMENT_FLAG = "landing-page-experiment";
+const TIMEOUT_MS = 3000;
+
+function LoadingSkeleton() {
+	return (
+		<div className="min-h-screen bg-black flex items-center justify-center">
+			<div className="animate-pulse flex flex-col items-center gap-4">
+				<div className="h-8 w-48 bg-white/10 rounded-lg" />
+				<div className="h-4 w-64 bg-white/5 rounded-lg" />
+			</div>
+		</div>
+	);
+}
+
+function VariantA() {
 	const reduce = useReducedMotion();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -136,5 +155,61 @@ export default function GeoModiLandingReplica() {
 				</div>
 			</div>
 		</LazyMotion>
+	);
+}
+
+function ABTestRouterInner() {
+	const searchParams = useSearchParams();
+	const variantParam = searchParams.get("variant"); // ?variant=control or ?variant=test
+	const variant = useFeatureFlagVariantKey(EXPERIMENT_FLAG);
+	const posthog = usePostHog();
+	const experimentTracked = useRef(false);
+	const [timedOut, setTimedOut] = useState(false);
+
+	// Timeout fallback: if PostHog doesn't respond in 3s, show control
+	useEffect(() => {
+		if (variant !== undefined) return;
+		const timer = setTimeout(() => setTimedOut(true), TIMEOUT_MS);
+		return () => clearTimeout(timer);
+	}, [variant]);
+
+	// Track $experiment_viewed once when variant is resolved (only if not forced via query param)
+	useEffect(() => {
+		if (variant && posthog && !experimentTracked.current && !variantParam) {
+			experimentTracked.current = true;
+			posthog.capture("$experiment_viewed", {
+				$feature_flag: EXPERIMENT_FLAG,
+				$feature_flag_response: variant,
+			});
+		}
+	}, [variant, posthog, variantParam]);
+
+	// If variant is forced via query param, use it immediately
+	if (variantParam === "control") {
+		return <VariantA />;
+	}
+
+	if (variantParam === "test") {
+		return <PageB />;
+	}
+
+	// Loading state: only on first visit while flags load (~300ms)
+	if (variant === undefined && !timedOut) {
+		return <LoadingSkeleton />;
+	}
+
+	// Route to the correct variant based on PostHog feature flag
+	if (variant === "test") {
+		return <PageB />;
+	}
+
+	return <VariantA />;
+}
+
+export default function ABTestRouter() {
+	return (
+		<Suspense fallback={<LoadingSkeleton />}>
+			<ABTestRouterInner />
+		</Suspense>
 	);
 }

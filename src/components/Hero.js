@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { usePostHog } from "posthog-js/react";
 
 export default function Hero({ stagger, elegantFade }) {
 	const router = useRouter();
+	const posthog = usePostHog();
 	const [storeUrl, setStoreUrl] = useState("");
 	const [selectedStore, setSelectedStore] = useState(null);
 	const [isChecking, setIsChecking] = useState(false);
@@ -70,6 +72,11 @@ export default function Hero({ stagger, elegantFade }) {
 		}
 
 		setError("");
+
+		posthog?.capture("hero_cta_submit", {
+			store_url: trimmedUrl,
+			platform: logoNames[selectedStore],
+		});
 
 		if (selectedStore === 0 || selectedStore === 3) {
 			// Check if it's actually a TiendaNube or WooCommerce store
