@@ -18,7 +18,7 @@ export function FinalCTA() {
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
             <Button
-              size="lg"
+              size="xl"
               asChild
             >
               <a

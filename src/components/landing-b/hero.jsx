@@ -45,7 +45,7 @@ export function Hero() {
             transition={{ duration: 1.2, delay: 0.3 }}
           >
             <Button
-              size="lg"
+              size="xl"
               asChild
             >
               <a
