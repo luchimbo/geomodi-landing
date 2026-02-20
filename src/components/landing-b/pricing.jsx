@@ -11,9 +11,26 @@ import { usePostHog } from "posthog-js/react"
 
 const tiers = [
   {
+    name: "Free",
+    price: "Gratis",
+    geos: "3 Geos",
+    savings: null,
+    bonus: null,
+    products: "5 productos",
+    costPerProduct: "Gratis",
+    features: [
+      "3 créditos Geos",
+      "Optimiza hasta 5 productos",
+    ],
+    cta: "Comenzar gratis",
+    link: "https://app.geomodi.ai/signup",
+    highlighted: false,
+  },
+  {
     name: "Starter",
-    price: "$5",
+    price: "$4.95",
     geos: "20 Geos",
+    savings: null,
     bonus: null,
     products: "40 productos",
     costPerProduct: "$0.13 por producto",
@@ -27,8 +44,9 @@ const tiers = [
   },
   {
     name: "Growth",
-    price: "$20",
+    price: "$19.95",
     geos: "120 Geos",
+    savings: "Ahorrás 33%",
     bonus: "+20%",
     products: "240 productos",
     costPerProduct: "$0.08 por producto",
@@ -42,8 +60,9 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$100",
+    price: "$99.95",
     geos: "700 Geos",
+    savings: "Ahorrás 43%",
     bonus: "+40%",
     products: "1.400 productos",
     costPerProduct: "$0.07 por producto",
@@ -57,8 +76,9 @@ const tiers = [
   },
   {
     name: "Agency",
-    price: "$500",
+    price: "$499.95",
     geos: "4.000 Geos",
+    savings: "Ahorrás 50%",
     bonus: "+100%",
     products: "8.000 productos",
     costPerProduct: "$0.06 por producto",
@@ -85,7 +105,7 @@ export function Pricing() {
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
         {tiers.map((tier, i) => (
           <AnimatedSection key={tier.name} delay={i * 0.08}>
             <Card
@@ -109,16 +129,14 @@ export function Pricing() {
                 <div className="mt-3">
                   <div>
                     <span className="text-3xl font-bold">{tier.price}</span>
-                    <span className="text-sm text-muted-foreground ml-1">USD</span>
                   </div>
-                  <div className="mt-1 flex items-center gap-2">
-                    <span className="text-sm font-medium text-primary">{tier.geos}</span>
-                    {tier.bonus && (
-                      <Badge variant="secondary" className="text-xs px-1.5 py-0">
-                        {tier.bonus}
-                      </Badge>
-                    )}
-                  </div>
+                  {tier.savings && (
+                    <div className="mt-1">
+                      <span className="text-sm font-semibold text-emerald-700">
+                        {tier.savings}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </CardHeader>
               <CardContent className="flex-1 pt-0">
@@ -152,6 +170,10 @@ export function Pricing() {
           </AnimatedSection>
         ))}
       </div>
+
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        Precios en dólares estadounidenses
+      </p>
     </SectionWrapper>
   )
 }
