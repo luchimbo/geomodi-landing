@@ -84,7 +84,7 @@ export function Hero() {
               className={`w-full sm:w-auto rounded-xl whitespace-nowrap transition-all duration-300 ${!storeUrl.trim() || isSubmitting ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
                 }`}
             >
-              {isSubmitting ? "Analizando..." : "Ver mi score →"}
+              {isSubmitting ? "Analizando..." : "Analizar mi tienda gratis →"}
             </Button>
           </motion.form>
 
