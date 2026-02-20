@@ -12,11 +12,11 @@ import { usePostHog } from "posthog-js/react"
 const tiers = [
   {
     name: "Starter",
-    price: "$20",
+    price: "$5",
     geos: "20 Geos",
     bonus: null,
     products: "40 productos",
-    costPerProduct: "$0.50 por producto",
+    costPerProduct: "$0.13 por producto",
     features: [
       "20 créditos Geos",
       "Optimiza hasta 40 productos",
@@ -27,11 +27,11 @@ const tiers = [
   },
   {
     name: "Growth",
-    price: "$100",
+    price: "$20",
     geos: "120 Geos",
     bonus: "+20%",
     products: "240 productos",
-    costPerProduct: "$0.42 por producto",
+    costPerProduct: "$0.08 por producto",
     features: [
       "120 créditos Geos (+20% bonus)",
       "Optimiza hasta 240 productos",
@@ -42,11 +42,11 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$500",
+    price: "$100",
     geos: "700 Geos",
     bonus: "+40%",
     products: "1.400 productos",
-    costPerProduct: "$0.36 por producto",
+    costPerProduct: "$0.07 por producto",
     features: [
       "700 créditos Geos (+40% bonus)",
       "Optimiza hasta 1.400 productos",
@@ -57,11 +57,11 @@ const tiers = [
   },
   {
     name: "Agency",
-    price: "$2.000",
+    price: "$500",
     geos: "4.000 Geos",
     bonus: "+100%",
     products: "8.000 productos",
-    costPerProduct: "$0.25 por producto",
+    costPerProduct: "$0.06 por producto",
     features: [
       "4.000 créditos Geos (+100% bonus)",
       "Optimiza hasta 8.000 productos",
